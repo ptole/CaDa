@@ -3,53 +3,53 @@
         "audio":[
             {
                 "name":"death_1",
-                "path":"../data/audio/death_1.mp3"
+                "path":"CaDa/data/audio/death_1.mp3"
             },
             {
                 "name":"attack_1",
-                "path":"../data/audio/attack_1.mp3"
+                "path":"CaDa/data/audio/attack_1.mp3"
             },
             {
                 "name":"door",
-                "path":"../data/audio/door.mp3"
+                "path":"CaDa/data/audio/door.mp3"
             },
             {
                 "name":"pressure",
-                "path":"../data/audio/pressure.mp3"
+                "path":"CaDa/data/audio/pressure.mp3"
             }
         ],
         "sprites":[
             {
                 "name":"hero",
-                "path":"../data/sprites/hero.png"
+                "path":"CaDa/data/sprites/hero.png"
             },
             {
                 "name":"crab",
-                "path":"../data/sprites/crab.png"
+                "path":"CaDa/data/sprites/crab.png"
             },
             {
                 "name":"bat",
-                "path":"../data/sprites/bat.png"
+                "path":"CaDa/data/sprites/bat.png"
             },
             {
                 "name":"spider",
-                "path":"../data/sprites/spider.png"
+                "path":"CaDa/data/sprites/spider.png"
             },
             {
                 "name":"fey",
-                "path":"../data/sprites/fey.png"
+                "path":"CaDa/data/sprites/fey.png"
             },
             {
                 "name":"lich",
-                "path":"../data/sprites/lich.png"
+                "path":"CaDa/data/sprites/lich.png"
             },
             {
                 "name":"troll",
-                "path":"../data/sprites/troll.png"
+                "path":"CaDa/data/sprites/troll.png"
             },
             {
                 "name":"merfolk",
-                "path":"../data/sprites/merfolk.png"
+                "path":"CaDa/data/sprites/merfolk.png"
             }
 
         ]
