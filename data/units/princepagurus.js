@@ -27,7 +27,7 @@ class PrincePagurus extends Entity {
         AM.audio["boss"].loop = true;
         AM.audio["boss"].play();
 
-        LOG.innerHTML += `${e.name}:<br>`;
+        LOG.innerHTML += `${this.name}:<br>`;
         LOG.innerHTML += `"A mere mortal trying to challenge us? The audacity! Prepare to drown toe-haver!"<br>`;
         LOG.scrollTop = LOG.scrollHeight;
 
