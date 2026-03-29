@@ -1,8 +1,9 @@
 import { Crab } from "./crab.js"
+import { PrincePagurus } from "./princepagurus.js";
 
 const UNIT_LUT = {
     "crb": Crab,
-    "pp": Crab //Create crab boss
+    "pp": PrincePagurus
 }
 
 export {UNIT_LUT};

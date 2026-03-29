@@ -52,7 +52,7 @@ var grid_offset_y = 0;
 const TILE_SIZE = 64;
 
 
-await sleep(500);
+await sleep(1000);
 
 
 function init() {
@@ -66,7 +66,7 @@ function init() {
   LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
 
   canvas.removeAttribute("hidden");
-  TXTBOX.removeAttribute("hidden");
+  TXTBOX.style.display = "flex";
 
   document.addEventListener("keydown", keyDownHandler);
   canvas.addEventListener("click", mouseClickHandler);
@@ -256,8 +256,8 @@ function keyDownHandler(e) {
   }
 
   if (endturn) {
-    grid_offset_x = PLAYER.grid_x - (grid_width / 2);
-    grid_offset_y = PLAYER.grid_y - (grid_height / 2);
+    grid_offset_x = Math.floor(PLAYER.grid_x - (grid_width / 2));
+    grid_offset_y = Math.floor(PLAYER.grid_y - (grid_height / 2));
     LM.currentLevel.triggerInactives(PLAYER.grid_x, PLAYER.grid_y);
     processTurn();
     draw();

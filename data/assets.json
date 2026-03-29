@@ -50,6 +50,10 @@
             {
                 "name":"merfolk",
                 "path":"./data/sprites/merfolk.png"
+            },
+            {
+                "name":"merfolk_big",
+                "path":"./data/sprites/merfolk_big.png"
             }
 
         ]

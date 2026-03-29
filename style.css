@@ -44,11 +44,11 @@ body {
 /* REST OF THE GAME*/
 
 #textbox {
-    display:flex;
+    display:none;
     position: relative;
     border: 1px solid white;
-    min-height: 15vh;
     max-height: 15vh;
+    margin-bottom:5px;
 }
 
 #log {
