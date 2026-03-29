@@ -1,0 +1,80 @@
+{
+    "levels": {
+        "1": {
+            "name":"Gutters of Gluttony",
+            "enemies": [
+                {
+                    "shorthand": "crb",
+                    "count": 10
+                },
+                {
+                    "shorthand": "pp",
+                    "count": 1
+                }
+            ]
+        },
+        "2":{
+            "name":"Workshops of Wrath",
+            "enemies":[
+                {
+                    "shorthand": "gig",
+                    "count": 1
+                }
+            ]
+        },
+        "3":{
+            "name":"Sacristy of Sloth",
+            "enemies":[
+                {
+                    "shorthand": "tbd",
+                    "count": 1
+                }
+            ]
+        },
+        "4":{
+            "name":"Great halls of Greed",
+            "enemies":[
+                {
+                    "shorthand": "lch",
+                    "count": 1
+                }
+            ]
+        },
+        "5":{
+            "name":"Lust",
+            "enemies":[
+                {
+                    "shorthand": "drg",
+                    "count": 1
+                }
+            ]
+        },
+        "6":{
+            "name":"Envy",
+            "enemies":[
+                {
+                    "shorthand": "gkz",
+                    "count": 1
+                }
+            ]
+        },
+        "7":{
+            "name":"Pinnacle of Pride",
+            "enemies":[
+                {
+                    "shorthand": "sss",
+                    "count": 1
+                }
+            ]
+        },
+        "8":{
+            "name":"Domain of the Debaser",
+            "enemies":[
+                {
+                    "shorthand": "gwb",
+                    "count": 1
+                }
+            ]
+        }
+    }
+}

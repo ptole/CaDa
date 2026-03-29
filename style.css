@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'mdos916';
+    src: url('data/ModernDOS9x16.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'mdos916';
+    color: white;
+    background-color: black;
+    font-size: 20px;
+}
+
+/* MAIN MENU*/
+@keyframes whiteYellowWhite{
+  0% {color:white}
+  25% {color:yellow}
+  50% {color: orange;}
+  75% {color: yellow;}
+  100% {color: white;}
+
+}
+
+.wyw {
+  animation-name:whiteYellowWhite;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+.main-content {
+    text-align: center;
+    min-height:85vh;
+  overflow-wrap: break-word;
+}
+
+.bottom-content {
+    position: relative;
+    border: 1px solid white;
+    padding:15px;
+    min-height:10vh;
+}
+/* REST OF THE GAME*/
+
+#textbox {
+    display:flex;
+    position: relative;
+    border: 1px solid white;
+    min-height: 15vh;
+    max-height: 15vh;
+}
+
+#log {
+    padding: 15px;
+    float: left;
+    width: 50%;
+    max-width: 50%;
+    overflow-y:scroll;
+    scrollbar-color: white;
+    scrollbar-width: thin;
+    text-wrap: wrap;
+    text-align: left;
+    font-size:15px;
+
+}
+#statwindow {
+    padding: 15px;
+    float: right;
+    width: 50%;
+    min-height:100%;
+    font-size:25px;
+}
