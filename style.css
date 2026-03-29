@@ -44,11 +44,11 @@ body {
 /* REST OF THE GAME*/
 
 #textbox {
-    display:none;
+    display:none; /* will be Flex once game is loaded*/
     position: relative;
     border: 1px solid white;
     max-height: 15vh;
-    margin-bottom:5px;
+    min-height: 15vh;
 }
 
 #log {

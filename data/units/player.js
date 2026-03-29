@@ -24,7 +24,7 @@ class Player extends Entity {
     playerDeath(){
         super.active = false;
 
-        LOG.innerHTML += `You have died, and with you dies all hope for this world.`;
+        LOG.innerHTML += `You have died, and with you dies all hope for this world.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
     }

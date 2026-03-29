@@ -26,7 +26,12 @@ class Entity {
     db = 0;     //damage bonus
     dd = 3;     //damage dice
 
+    trigger = this.basicTrigger;
 
+
+    basicTrigger(){
+        this.active = true;
+    }
 
     basicMove(target) {
         const dx = target.grid_x - this.grid_x;

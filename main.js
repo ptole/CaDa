@@ -13,11 +13,12 @@ window.onload = (event) => {
   const m = document.getElementById("main-content");
 
   printWordByWord(m, intro, 50);
-  const startGameEvent = function (event) {
+  const startGameEvent = async function (event) {
     if (event.key === "Enter") {
-      init();
+      
       window.removeEventListener("keypress", startGameEvent);
       m.remove();
+      await init();
 
     }
   }
@@ -40,6 +41,7 @@ const AB = document.querySelector("#ab");
 const DMG = document.querySelector("#dmg");
 
 const AM = new AssetManager();
+await sleep(500);
 const LM = new LevelManager();
 const PLAYER = new Player();
 
@@ -52,12 +54,13 @@ var grid_offset_y = 0;
 const TILE_SIZE = 64;
 
 
-await sleep(1000);
 
 
-function init() {
+
+async function init() {
 
   LM.loadLevel(1);
+  await sleep(1000);
 
 
   LM.findFreeSpaceAndPlaceEntity(LM.currentLevel, PLAYER);

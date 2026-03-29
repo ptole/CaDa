@@ -16,7 +16,36 @@ class PrincePagurus extends Entity {
         super.hp = 10;
         super.db = 1;
         super.dd = 4;
+        super.trigger = this.bossTrigger;
+        super.remove = this.bossDeath;
     }
+
+    bossTrigger() {
+        this.active = true;
+        AM.audio["pressure"].pause();
+
+        AM.audio["boss"].loop = true;
+        AM.audio["boss"].play();
+
+        LOG.innerHTML += `${e.name}:<br>`;
+        LOG.innerHTML += `"A mere mortal trying to challenge us? The audacity! Prepare to drown toe-haver!"<br>`;
+        LOG.scrollTop = LOG.scrollHeight;
+
+    }
+
+    bossDeath() {
+        this.level.removeEntity(this);
+
+        AM.audio["boss"].pause();
+
+        AM.audio["pressure"].loop = true;
+        AM.audio["pressure"].play();
+
+        LOG.innerHTML += `${this.name} dies<br>`;
+        LOG.scrollTop = LOG.scrollHeight;
+        AM.audio["death_1"].play();
+    }
+
 }
 
 export { PrincePagurus };

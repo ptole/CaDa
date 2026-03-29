@@ -16,6 +16,10 @@
             {
                 "name":"pressure",
                 "path":"./data/audio/pressure.mp3"
+            },
+            {
+                "name":"boss",
+                "path":"./data/audio/boss.mp3"
             }
         ],
         "sprites":[

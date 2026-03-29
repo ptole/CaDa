@@ -34,7 +34,7 @@ class Level {
             if(Math.abs(this.inactives[i].grid_x - x) <= 10){
                 if(Math.abs(this.inactives[i].grid_y - y) <= 10){
                     indecies.push(i);
-                    this.inactives[i].active = true;
+                    this.inactives[i].trigger();
                 }
             }
         }
