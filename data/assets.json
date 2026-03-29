@@ -3,53 +3,53 @@
         "audio":[
             {
                 "name":"death_1",
-                "path":"CaDa/data/audio/death_1.mp3"
+                "path":"/data/audio/death_1.mp3"
             },
             {
                 "name":"attack_1",
-                "path":"CaDa/data/audio/attack_1.mp3"
+                "path":"/data/audio/attack_1.mp3"
             },
             {
                 "name":"door",
-                "path":"CaDa/data/audio/door.mp3"
+                "path":"/data/audio/door.mp3"
             },
             {
                 "name":"pressure",
-                "path":"CaDa/data/audio/pressure.mp3"
+                "path":"/data/audio/pressure.mp3"
             }
         ],
         "sprites":[
             {
                 "name":"hero",
-                "path":"CaDa/data/sprites/hero.png"
+                "path":"/data/sprites/hero.png"
             },
             {
                 "name":"crab",
-                "path":"CaDa/data/sprites/crab.png"
+                "path":"/data/sprites/crab.png"
             },
             {
                 "name":"bat",
-                "path":"CaDa/data/sprites/bat.png"
+                "path":"/data/sprites/bat.png"
             },
             {
                 "name":"spider",
-                "path":"CaDa/data/sprites/spider.png"
+                "path":"/data/sprites/spider.png"
             },
             {
                 "name":"fey",
-                "path":"CaDa/data/sprites/fey.png"
+                "path":"/data/sprites/fey.png"
             },
             {
                 "name":"lich",
-                "path":"CaDa/data/sprites/lich.png"
+                "path":"/data/sprites/lich.png"
             },
             {
                 "name":"troll",
-                "path":"CaDa/data/sprites/troll.png"
+                "path":"/data/sprites/troll.png"
             },
             {
                 "name":"merfolk",
-                "path":"CaDa/data/sprites/merfolk.png"
+                "path":"/data/sprites/merfolk.png"
             }
 
         ]
