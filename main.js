@@ -52,7 +52,7 @@ var grid_offset_y = 0;
 const TILE_SIZE = 64;
 
 
-
+await sleep(500);
 
 
 function init() {
