@@ -1,5 +1,6 @@
 import { Entity } from "../../modules/entity.js";
 import { LOG, AM } from "../../main.js";
+import { Ladder } from "./ladder.js";
 
 
 class PrincePagurus extends Entity {
@@ -34,6 +35,14 @@ class PrincePagurus extends Entity {
     }
 
     bossDeath() {
+        let ldr = new Ladder(2);
+        ldr.id = 125;
+        ldr.grid_x = this.grid_x;
+        ldr.grid_y = this.grid_y;
+        ldr.paid = 127;
+        ldr.map = this.map;
+
+
         this.map.removeEntity(this);
 
         AM.audio["boss"].pause();
@@ -41,9 +50,12 @@ class PrincePagurus extends Entity {
         AM.audio["pressure"].loop = true;
         AM.audio["pressure"].play();
 
-        LOG.innerHTML += `${this.name} dies<br>`;
+        LOG.innerHTML += `${this.name} dies<br> A way to ascend the castle has been revealed.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
+
+        this.map.addPickup(ldr);
+        this.map.GRID[ldr.grid_x][ldr.grid_y] = 125;
     }
 
 }

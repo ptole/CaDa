@@ -65,12 +65,6 @@ async function init() {
   LM.loadLevel(1);
   await sleep(1000);
 
-
-  LM.findFreeSpaceAndPlaceEntity(LM.currentLevel, PLAYER);
-  PLAYER.map = LM.currentLevel;
-
-  LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
-
   canvas.removeAttribute("hidden");
   TXTBOX.style.display = "flex";
 
@@ -91,8 +85,7 @@ async function init() {
   AM.audio["pressure"].play();
   updateUI();
 
-  grid_offset_x = PLAYER.grid_x - (grid_width / 2);
-  grid_offset_y = PLAYER.grid_y - (grid_height / 2);
+  calcGridOffset();
 
   draw();
 }
@@ -121,7 +114,7 @@ function drawEntities() {
   });
 }
 
-function drawPickups(){
+function drawPickups() {
   LM.currentLevel.pickups.forEach(e => {
     ctx.drawImage(e.sprite, ((e.grid_x - grid_offset_x) * TILE_SIZE) + e.sprite_offset_x, ((e.grid_y - grid_offset_y) * TILE_SIZE) + e.sprite_offset_y);
   });
@@ -284,8 +277,7 @@ function keyDownHandler(e) {
   }
 
   if (endturn) {
-    grid_offset_x = Math.floor(PLAYER.grid_x - (grid_width / 2));
-    grid_offset_y = Math.floor(PLAYER.grid_y - (grid_height / 2));
+    calcGridOffset();
     LM.currentLevel.triggerInactives(PLAYER.grid_x, PLAYER.grid_y);
     processTurn();
     draw();
@@ -308,4 +300,9 @@ function mouseClickHandler(e) {
 
 }
 
-export { LOG, AM, LM, PLAYER };
+function calcGridOffset() {
+  grid_offset_x = Math.floor(PLAYER.grid_x - (grid_width / 2));
+  grid_offset_y = Math.floor(PLAYER.grid_y - (grid_height / 2));
+}
+
+export { LOG, AM, LM, PLAYER, updateUI, draw, calcGridOffset };

@@ -3,6 +3,7 @@ import levels from "../data/levels.json" with { type: "json" };
 import { LOG } from "../main.js";
 import { UNIT_LUT } from "../data/units/unitLUT.js";
 import { DrunkenWalker } from "./utils/crawler.js";
+import { PLAYER, updateUI, draw, calcGridOffset } from "../main.js";
 
 
 class LevelManager {
@@ -66,8 +67,17 @@ class LevelManager {
 
         this.currentLevel = lvl;
 
-        LOG.innerHTML += `Entering ${data["name"]} <br>`;
+        LOG.innerHTML += `Entering ${data.name} <br>`;
+        LOG.innerHTML += `${data.description}<br>`;
         LOG.scrollTop = LOG.scrollHeight;
+
+        this.findFreeSpaceAndPlaceEntity(this.currentLevel, PLAYER);
+        PLAYER.map = this.currentLevel;
+        
+        this.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
+        updateUI();
+        calcGridOffset();
+        draw();
     }
 
     findFreeSpaceAndPlaceEntity(lvl, e) {

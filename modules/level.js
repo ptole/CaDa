@@ -88,6 +88,8 @@ class Level {
     }
 
     removeWall(x, y) {
+        //Exclude borders
+        if(x === 0){return;} else if(y === 0){return;} else if(x === this.size-1){return;} else if(y === this.size-1){return;}
         for (let i = 0; i < this.walls.length; i++) {
             if ((this.walls[i][0] === x) && (this.walls[i][1] === y)) {
                 this.walls.splice(i, 1);

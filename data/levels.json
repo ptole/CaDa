@@ -2,6 +2,7 @@
     "levels": {
         "1": {
             "name": "Gutters of Gluttony",
+            "description":"The stonework of the castle's waterworks is damp, and smell of briny and rotting fish is everpresent.",
             "enemies": [
                 {
                     "shorthand": "crb",

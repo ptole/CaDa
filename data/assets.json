@@ -82,6 +82,10 @@
             {
                 "name":"weapons",
                 "path":"./data/sprites/weapons.png"
+            },
+            {
+                "name":"ladder",
+                "path":"./data/sprites/ladder.png"
             }
         ]
     }

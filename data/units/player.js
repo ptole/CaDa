@@ -7,7 +7,7 @@ class Player extends Entity {
 
     level = 1;
     current_xp = 0;
-    nxt_lvl = 2;
+    nxt_lvl = 5;
 
     constructor() {
         super();
@@ -76,8 +76,17 @@ class Player extends Entity {
             super.hp = (10+this.level);
         }
 
+        if(this.level % 2 === 0){
+            super.ab++;
+        }
+
+        if(this.level % 4 === 0){
+            super.db++;
+            super.ac++;
+        }
+
         AM.audio["lvlup"].play();
-        LOG.innerHTML += `${this.name} are filled with determination as you ascend to level ${this.level}!<br>`;
+        LOG.innerHTML += `${this.name} are filled with faith and hope as you ascend to level ${this.level}!<br>`;
         LOG.scrollTop = LOG.scrollHeight;
     }
 }

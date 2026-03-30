@@ -12,11 +12,6 @@ class ACPickup extends Entity {
         super.name = "Armour pickup";
         super.description = `Gain ${this.acgain} AC`;
         super.sprite = AM.sprites["shield"];
-        super.ab = 0;
-        super.ac = -1;
-        super.hp = 1;
-        super.db = 0;
-        super.dd = 0;
         super.active = false;
         super.remove = this.consume;
         super.id = 125;
