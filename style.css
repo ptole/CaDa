@@ -62,12 +62,22 @@ body {
     text-wrap: wrap;
     text-align: left;
     font-size:15px;
+    min-width: 50%;
 
 }
+
 #statwindow {
     padding: 15px;
     float: right;
     width: 50%;
     min-height:100%;
-    font-size:25px;
+    font-size:20px;
+}
+
+#morestats {
+    padding: 15px;
+    float: right;
+    width: 50%;
+    min-height:100%;
+    font-size:20px;
 }

@@ -7,7 +7,7 @@ import { Player } from "./data/units/player.js";
 import { printWordByWord } from "./modules/utils/slowprint.js";
 
 /* mainmenu stuff */
-const intro = "Grand Wizard Barnogoth is preparing a great spell that will create and bring forth the eighth deadly sin into the world. Nobody knows what it is, but this has to be stopped. <br> <br> Nations and kings have buried their hatchets for the moment, and are laying siege upon the castle of the dark wizard. <br> Dragons, demons and skeletons come pouring out of the castle, but the soldiers of the alliance hold their line. They have chosen from amongst them their greatest hero, who through a secret passage has gained entry to the lowest level of Darkholm Castle with only one mission: To stop and vanquish Barnogoth. <br> <br> The world is counting on (You). <br> <br> Press &lt;Enter&gt; to begin.";
+const intro = "Grand Wizard Barnogoth is preparing a great spell that will create and bring forth the eighth deadly sin into the world. Nobody knows what it is, but this has to be stopped. <br> <br> Nations and kings have buried their hatchets for the moment, and are laying siege upon the castle of the dark wizard. <br> Dragons, demons and skeletons come pouring out of the castle, but the soldiers of the alliance hold their line. They have chosen from amongst them their greatest hero, who through a secret passage has gained entry to the lowest level of Darkholm Castle with only one mission: To stop and vanquish Barnogoth. <br> <br> The world is counting on (You). <br> <br> Press &lt;Enter&gt; to begin. <br> <br> Controls: <br> &lt;Arrows&gt; or &lt;WASD&gt; to move, &lt;Space&gt; to stand still, &lt;Left Click&gt; to inspect objects.";
 window.onload = (event) => {
 
   const m = document.getElementById("main-content");
@@ -15,7 +15,7 @@ window.onload = (event) => {
   printWordByWord(m, intro, 50);
   const startGameEvent = async function (event) {
     if (event.key === "Enter") {
-      
+
       window.removeEventListener("keypress", startGameEvent);
       m.remove();
       await init();
@@ -39,9 +39,12 @@ const HP = document.querySelector("#hp");
 const AC = document.querySelector("#ac");
 const AB = document.querySelector("#ab");
 const DMG = document.querySelector("#dmg");
+const LVL_UI = document.querySelector("#level");
+const EXP = document.querySelector("#exp");
+const NXTLVL = document.querySelector("#nextlvl");
 
 const AM = new AssetManager();
-await sleep(500);
+
 const LM = new LevelManager();
 const PLAYER = new Player();
 
@@ -64,7 +67,7 @@ async function init() {
 
 
   LM.findFreeSpaceAndPlaceEntity(LM.currentLevel, PLAYER);
-  PLAYER.level = LM.currentLevel;
+  PLAYER.map = LM.currentLevel;
 
   LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
 
@@ -118,6 +121,12 @@ function drawEntities() {
   });
 }
 
+function drawPickups(){
+  LM.currentLevel.pickups.forEach(e => {
+    ctx.drawImage(e.sprite, ((e.grid_x - grid_offset_x) * TILE_SIZE) + e.sprite_offset_x, ((e.grid_y - grid_offset_y) * TILE_SIZE) + e.sprite_offset_y);
+  });
+}
+
 function drawEntity(e) {
   ctx.drawImage(e.sprite, ((e.grid_x - grid_offset_x) * TILE_SIZE) + e.sprite_offset_x, ((e.grid_y - grid_offset_y) * TILE_SIZE) + e.sprite_offset_y);
 }
@@ -144,6 +153,9 @@ function updateUI() {
   AB.innerHTML = PLAYER.ab;
   AC.innerHTML = PLAYER.ac;
   DMG.innerHTML = `d${PLAYER.dd} + ${PLAYER.db}`;
+  LVL_UI.innerHTML = PLAYER.level;
+  EXP.innerHTML = PLAYER.current_xp;
+  NXTLVL.innerHTML = PLAYER.nxt_lvl;
 }
 
 function draw() {
@@ -155,6 +167,7 @@ function draw() {
 
   drawGrid();
   drawWalls();
+  drawPickups();
   drawEntities();
   drawPlayer();
 }
@@ -200,6 +213,9 @@ function keyDownHandler(e) {
     } else if (LM.currentLevel.isEnemy(nx, ny)) {
       PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
       endturn = true;
+    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
+      LM.currentLevel.getPickupByCoord(nx, ny).remove();
+      endturn = true;
     }
   }
 
@@ -216,6 +232,9 @@ function keyDownHandler(e) {
       endturn = true;
     } else if (LM.currentLevel.isEnemy(nx, ny)) {
       PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
+      endturn = true;
+    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
+      LM.currentLevel.getPickupByCoord(nx, ny).remove();
       endturn = true;
     }
   }
@@ -234,6 +253,9 @@ function keyDownHandler(e) {
     } else if (LM.currentLevel.isEnemy(nx, ny)) {
       PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
       endturn = true;
+    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
+      LM.currentLevel.getPickupByCoord(nx, ny).remove();
+      endturn = true;
     }
   }
 
@@ -250,6 +272,9 @@ function keyDownHandler(e) {
       endturn = true;
     } else if (LM.currentLevel.isEnemy(nx, ny)) {
       PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
+      endturn = true;
+    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
+      LM.currentLevel.getPickupByCoord(nx, ny).remove();
       endturn = true;
     }
   }
@@ -283,4 +308,4 @@ function mouseClickHandler(e) {
 
 }
 
-export { LOG, AM, LM };
+export { LOG, AM, LM, PLAYER };

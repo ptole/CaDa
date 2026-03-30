@@ -20,6 +20,14 @@
             {
                 "name":"boss",
                 "path":"./data/audio/boss.mp3"
+            },
+            {
+                "name":"lvlup",
+                "path":"./data/audio/lvlup.mp3"
+            },
+            {
+                "name":"pickup",
+                "path":"./data/audio/pickup.mp3"
             }
         ],
         "sprites":[
@@ -58,8 +66,23 @@
             {
                 "name":"merfolk_big",
                 "path":"./data/sprites/merfolk_big.png"
+            },
+            {
+                "name":"heart",
+                "path":"./data/sprites/heart.png"
+            },
+            {
+                "name":"sword",
+                "path":"./data/sprites/sword.png"
+            },
+            {
+                "name":"shield",
+                "path":"./data/sprites/shield.png"
+            },
+            {
+                "name":"weapons",
+                "path":"./data/sprites/weapons.png"
             }
-
         ]
     }
 }

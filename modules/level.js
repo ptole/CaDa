@@ -1,8 +1,9 @@
 class Level {
-    GRID;       //array of uint8arrays (id's)
-    entities;   //array of objects
-    enemies;    //object, id : object
-    walls;      //array of [x,y] pairs
+    GRID = [];      //array of uint8arrays (id's)
+    entities = [];  //array of objects
+    enemies = {};   //object, id : object
+    walls = [];     //array of [x,y] pairs
+    pickups = [];   //array of objects
 
     inactives; //array of entities. basically enemies but inactives.
     freeSpaceForSpawn; //this is getting way too complicated
@@ -16,6 +17,7 @@ class Level {
         this.walls = [];
         this.inactives = [];
         this.freeSpaceForSpawn = [];
+        this.pickups = [];
 
         for (let i = 0; i < this.size; i++) {
             this.GRID.push(new Uint8Array(this.size));
@@ -30,16 +32,16 @@ class Level {
 
     triggerInactives(x, y) {
         let indecies = [];
-        for(let i = 0; i<this.inactives.length; i++) {
-            if(Math.abs(this.inactives[i].grid_x - x) <= 10){
-                if(Math.abs(this.inactives[i].grid_y - y) <= 10){
+        for (let i = 0; i < this.inactives.length; i++) {
+            if (Math.abs(this.inactives[i].grid_x - x) <= 6) {
+                if (Math.abs(this.inactives[i].grid_y - y) <= 6) {
                     indecies.push(i);
                     this.inactives[i].trigger();
                 }
             }
         }
-        for(let i = 0; i<indecies.length; i++){
-            this.inactives.splice(indecies[i],1);
+        for (let i = 0; i < indecies.length; i++) {
+            this.inactives.splice(indecies[i], 1);
         }
     }
 
@@ -56,6 +58,28 @@ class Level {
             this.entities.push(entity);
     }
 
+    addPickup(pickup) {
+        this.pickups.push(pickup);
+    }
+
+    removePickup(pickup){
+        let index;
+        for(let i = 0; i< this.pickups.length; i++){
+            if(pickup.paid === this.pickups[i].paid){
+                index = i;
+            }
+        }
+
+        this.pickups.splice(index,1);
+
+        pickup.active = false;
+        pickup.level = undefined;
+        this.GRID[pickup.grid_x][pickup.grid_y] = 0;
+
+        pickup.grid_x = undefined;
+        pickup.grid_y = undefined;
+    }
+
     addWall(x, y) {
         if (this.GRID[x][y] != 127) {
             this.walls.push([x, y]);
@@ -68,30 +92,32 @@ class Level {
             if ((this.walls[i][0] === x) && (this.walls[i][1] === y)) {
                 this.walls.splice(i, 1);
                 this.GRID[x][y] = 0;
-                this.freeSpaceForSpawn.push([x,y]);
+                this.freeSpaceForSpawn.push([x, y]);
             }
         }
     }
 
-    removeEntity(e){
-        
+    removeEntity(e) {
+
         e.active = false;
         e.level = undefined;
         this.GRID[e.grid_x][e.grid_y] = 0;
-        
+
         e.grid_x = undefined;
         e.grid_y = undefined;
 
         let index;
-        for(let i = 0; i<this.entities.length; i++){
-            if(this.entities[i].id === e.id){
+        for (let i = 0; i < this.entities.length; i++) {
+            if (this.entities[i].id === e.id) {
                 index = i;
             }
         }
 
         this.entities.splice(index, 1);
 
-        delete this.enemies[e.id];
+        if (Object.keys(this.enemies).includes(e.id)) {
+            delete this.enemies[e.id];
+        }
     }
 
     getEnemyById(id) {
@@ -102,8 +128,30 @@ class Level {
         return this.getEnemyById(this.GRID[x][y]);
     }
 
+    getEntityByCoord(x, y) {
+        let rslt;
+        for (let i = 0; i < this.entities.length; i++) {
+            if ((this.entities[i].grid_x === x) && (this.entities[i].grid_y === y)) {
+                rslt = this.entities[i];
+            }
+
+        }
+        return rslt;
+    }
+
     isEnemy(x, y) {
         return Object.keys(this.enemies).includes(this.GRID[x][y].toString());
+    }
+
+    getPickupByCoord(x, y) {
+        let rslt;
+        for (let i = 0; i < this.pickups.length; i++) {
+            if ((this.pickups[i].grid_x === x) && (this.pickups[i].grid_y === y)) {
+                rslt = this.pickups[i];
+            }
+
+        }
+        return rslt;
     }
 }
 

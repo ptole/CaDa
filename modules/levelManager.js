@@ -43,9 +43,23 @@ class LevelManager {
             for (let i = 0; i < enemy.count; i++) {
                 let e = new UNIT_LUT[enemy.shorthand];
                 e.id = running_id;
-                e.level = lvl;
+                e.map = lvl;
                 lvl.addEnemy(e);
                 this.findFreeSpaceAndPlaceEntity(lvl, e);
+                running_id++;
+            }
+        }
+
+        //Create pickups
+        running_id = 2;
+
+        for (const [key, pickup] of Object.entries(data.pickups)) {
+            for (let i = 0; i < pickup.count; i++) {
+                let pu = new UNIT_LUT[pickup.shorthand](pickup.value);
+                pu.map = lvl;
+                pu.paid = running_id;
+                lvl.addPickup(pu);
+                this.findFreeSpaceAndPlaceEntity(lvl, pu);
                 running_id++;
             }
         }
@@ -62,6 +76,7 @@ class LevelManager {
         lvl.freeSpaceForSpawn.splice(i, 1);
         e.grid_x = coord[0];
         e.grid_y = coord[1];
+        lvl.GRID[e.grid_x][e.grid_y] = e.id;
     }
 
     addLevelBorders(lvl) {

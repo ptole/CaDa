@@ -1,5 +1,5 @@
 import { PriorityQueue } from "./utils/PQ.js";
-import { LOG, AM } from "../main.js";
+import { LOG, AM, PLAYER } from "../main.js";
 import { rollDice } from "./utils/dice.js";
 
 class Entity {
@@ -20,33 +20,39 @@ class Entity {
     description;
     name;
     hp = 1;
-    level;
+    map;        //This nomenclature sucks, but for sanitys sake "level" is the gamey power level of player so this had to be changed
     ab = 0;     //attack bonus
     ac = 10;    //armour class
     db = 0;     //damage bonus
     dd = 3;     //damage dice
 
+    xp_yield = 1;
+
     trigger = this.basicTrigger;
 
+    paid; //passive id, meant to separate different pickups from eachother
 
     basicTrigger(){
         this.active = true;
     }
 
     basicMove(target) {
+        if(!this.active)
+            return;
+
         const dx = target.grid_x - this.grid_x;
         const dy = target.grid_y - this.grid_y;
 
         if (Math.abs(dx) > Math.abs(dy)) {
             const nx = this.grid_x + Math.sign(dx);
 
-            if (this.level.GRID[nx][this.grid_y] === 1) {
-                this.attack(target, this.level.GRID);
+            if (this.map.GRID[nx][this.grid_y] === 1) {
+                this.attack(target, this.map.GRID);
 
-            } else if (this.level.GRID[nx][this.grid_y] === 0) {
-                this.level.GRID[this.grid_x][this.grid_y] = 0;
+            } else if (this.map.GRID[nx][this.grid_y] === 0) {
+                this.map.GRID[this.grid_x][this.grid_y] = 0;
                 this.grid_x = nx;
-                this.level.GRID[this.grid_x][this.grid_y] = this.id;
+                this.map.GRID[this.grid_x][this.grid_y] = this.id;
 
             } else {
 
@@ -57,14 +63,14 @@ class Entity {
 
             const ny = this.grid_y + Math.sign(dy);
 
-            if (this.level.GRID[this.grid_x][ny] === 1) {
-                this.attack(target, this.level.GRID);
+            if (this.map.GRID[this.grid_x][ny] === 1) {
+                this.attack(target, this.map.GRID);
 
-            } else if (this.level.GRID[this.grid_x][ny] === 0) {
+            } else if (this.map.GRID[this.grid_x][ny] === 0) {
 
-                this.level.GRID[this.grid_x][this.grid_y] = 0;
+                this.map.GRID[this.grid_x][this.grid_y] = 0;
                 this.grid_y = ny;
-                this.level.GRID[this.grid_x][this.grid_y] = this.id;
+                this.map.GRID[this.grid_x][this.grid_y] = this.id;
 
             } else {
 
@@ -98,9 +104,11 @@ class Entity {
     };
 
     basicDeath() {
-        this.level.removeEntity(this);
+        this.map.removeEntity(this);
 
         LOG.innerHTML += `${this.name} dies<br>`;
+        LOG.innerHTML += `You gained ${this.xp_yield} XP<br>`;
+        PLAYER.addXP(this.xp_yield);
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
     }

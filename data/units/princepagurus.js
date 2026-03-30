@@ -34,7 +34,7 @@ class PrincePagurus extends Entity {
     }
 
     bossDeath() {
-        this.level.removeEntity(this);
+        this.map.removeEntity(this);
 
         AM.audio["boss"].pause();
 
