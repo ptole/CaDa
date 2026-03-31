@@ -33,10 +33,32 @@
         },
         "2": {
             "name": "Workshops of Wrath",
+            "description":"The sound of clashing metal echoes from endless gladiator pits, where only the strongest survive.",
             "enemies": [
                 {
-                    "shorthand": "gig",
+                    "shorthand": "giga",
                     "count": 1
+                },
+                {
+                    "shorthand": "gladi",
+                    "count": 10
+                }
+            ],
+            "pickups": [
+                {
+                    "shorthand":"hppu",
+                    "count":20,
+                    "value":2
+                },
+                {
+                    "shorthand":"acpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"abpu",
+                    "count":2,
+                    "value":1
                 }
             ]
         },

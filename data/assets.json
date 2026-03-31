@@ -86,6 +86,15 @@
             {
                 "name":"ladder",
                 "path":"./data/sprites/ladder.png"
+            },
+            {
+                "name":"gladiator",
+                "path":"./data/sprites/gladiator.png"
+            }
+            ,
+            {
+                "name":"giga",
+                "path":"./data/sprites/giga.png"
             }
         ]
     }
