@@ -72,17 +72,17 @@ class Player extends Entity {
         this.current_xp = diff;
         this.level++;
 
-        if(super.hp < (10+this.level)){
-            super.hp = (10+this.level);
+        if(this.hp < (10+this.level)){
+            this.hp = (10+this.level);
         }
 
         if(this.level % 2 === 0){
-            super.ab++;
+            this.ab++;
         }
 
         if(this.level % 4 === 0){
-            super.db++;
-            super.ac++;
+            this.db++;
+            this.ac++;
         }
 
         AM.audio["lvlup"].play();

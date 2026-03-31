@@ -24,7 +24,7 @@ class Ladder extends Entity {
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["door"].play();
 
-        LM.loadLevel(this.tgt);
+        LM.loadLevel(this.target_level);
         
     }
 }

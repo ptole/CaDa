@@ -289,13 +289,17 @@ function mouseClickHandler(e) {
   x += grid_offset_x;
   y += grid_offset_y;
   const id = LM.currentLevel.GRID[x][y];
-  if (id != 0) {
+  if ((id != 0) && (id != 125)) {
     if (LM.currentLevel.isEnemy(x, y)) {
       const e = LM.currentLevel.getEnemyById(id);
       LOG.innerHTML += `- ${e.name} -<br> ${e.description}<br>`;
       LOG.innerHTML += `HP: ${e.hp} AC: ${e.ac} AB: ${e.ab} DMG: ${e.dd}+${e.db}<br>`;
       LOG.scrollTop = LOG.scrollHeight;
     }
+  }else{
+    const p = LM.currentLevel.getPickupByCoord(x,y);
+    LOG.innerHTML += `- ${p.name} -<br> ${p.description}<br>`;
+    LOG.scrollTop = LOG.scrollHeight;
   }
 
 }
