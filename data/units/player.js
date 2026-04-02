@@ -9,6 +9,10 @@ class Player extends Entity {
     current_xp = 0;
     nxt_lvl = 5;
 
+    slot_1 = undefined;
+    slot_2 = undefined;
+    slot_3 = undefined;
+
     constructor() {
         super();
         super.id = 1;
@@ -24,10 +28,10 @@ class Player extends Entity {
         super.ac = 10;
         super.db = 0;
         super.dd = 6;
-    
+
     }
 
-    playerDeath(){
+    playerDeath() {
         super.active = false;
 
         LOG.innerHTML += `You have died, and with you dies all hope for this world.<br>`;
@@ -36,51 +40,51 @@ class Player extends Entity {
     }
 
     playerAttack(target) {
-            let d20 = rollDice(20);
-            let rslt = d20 + this.ab;
-            LOG.innerHTML += `${this.name} attack ${target.name}<br>`;
-    
-            if(rslt >= target.ac){
-                LOG.innerHTML += `${this.name} roll ${d20} + ${this.ab} = ${rslt} and hit!<br>`;
-                let dmgdice = rollDice(this.dd);
-                rslt = dmgdice + this.db;
-                LOG.innerHTML += `${this.name} hit ${target.name} for ${dmgdice} + ${this.db} = ${rslt}<br>`;
-                target.hp -= rslt;
-            }else{
-                LOG.innerHTML += `${this.name} roll ${d20} + ${this.ab} = ${rslt} and miss<br>`;
-            }
-    
-            LOG.scrollTop = LOG.scrollHeight;
-    
-            AM.audio["attack_1"].play();
-    
-            if (target.hp < 1) {
-                target.remove();
-            }
-        };
+        let d20 = rollDice(20);
+        let rslt = d20 + this.ab;
+        LOG.innerHTML += `${this.name} attack ${target.name}<br>`;
 
-    addXP(amount){
+        if (rslt >= target.ac) {
+            LOG.innerHTML += `${this.name} roll ${d20} + ${this.ab} = ${rslt} and hit!<br>`;
+            let dmgdice = rollDice(this.dd);
+            rslt = dmgdice + this.db;
+            LOG.innerHTML += `${this.name} hit ${target.name} for ${dmgdice} + ${this.db} = ${rslt}<br>`;
+            target.hp -= rslt;
+        } else {
+            LOG.innerHTML += `${this.name} roll ${d20} + ${this.ab} = ${rslt} and miss<br>`;
+        }
+
+        LOG.scrollTop = LOG.scrollHeight;
+
+        AM.audio["attack_1"].play();
+
+        if (target.hp < 1) {
+            target.remove();
+        }
+    };
+
+    addXP(amount) {
         this.current_xp += amount;
 
-        if(this.current_xp >= this.nxt_lvl){
+        if (this.current_xp >= this.nxt_lvl) {
             let diff = this.current_xp - this.nxt_lvl;
             this.lvlUp(diff);
         }
     }
 
-    lvlUp(diff){
+    lvlUp(diff) {
         this.current_xp = diff;
         this.level++;
 
-        if(this.hp < (10+this.level)){
-            this.hp = (10+this.level);
+        if (this.hp < (10 + this.level)) {
+            this.hp = (10 + this.level);
         }
 
-        if(this.level % 2 === 0){
+        if (this.level % 2 === 0) {
             this.ab++;
         }
 
-        if(this.level % 4 === 0){
+        if (this.level % 4 === 0) {
             this.db++;
             this.ac++;
         }

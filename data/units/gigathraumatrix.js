@@ -8,7 +8,7 @@ class Gigathraumatrix extends Entity {
     constructor() {
         super();
         super.name = "Dark Blademaster Gigathraumatrix";
-        super.description = "The most feared duelist of all time.";
+        super.description = "The most feared duelist of Earthrealm.";
         super.sprite = AM.sprites["giga"];
         super.sprite_offset_x = -16;
         super.sprite_offset_y = -32;
@@ -50,7 +50,8 @@ class Gigathraumatrix extends Entity {
         AM.audio["pressure"].loop = true;
         AM.audio["pressure"].play();
 
-        LOG.innerHTML += `${this.name}: "Finally. The sweet embrace of death. For ages I had been undefeated. A purposeless existence, without excitement. Thank you, warrior."<br>`;
+        LOG.innerHTML += `${this.name}:<br>`;
+        LOG.innerHTML += `"Finally. The sweet embrace of death. For ages I had been undefeated. A purposeless existence, without excitement. Thank you, warrior."<br>`;
         LOG.innerHTML += `${this.name} dies<br> A way to ascend the castle has been revealed.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();

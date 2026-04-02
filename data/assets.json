@@ -110,6 +110,10 @@
             {
                 "name":"sparkle",
                 "path":"./data/sprites/sparkle.png"
+            },
+            {
+                "name":"scroll",
+                "path":"./data/sprites/scroll.png"
             }
         ]
     }

@@ -50,7 +50,8 @@ class PrincePagurus extends Entity {
         AM.audio["pressure"].loop = true;
         AM.audio["pressure"].play();
 
-        LOG.innerHTML += `${this.name}: "And so I will sink down to my watery grave. But know this, toe-haver, I spit at you and your kind even as I march to oblivion."<br>`;
+        LOG.innerHTML += `${this.name}:<br>`;
+        LOG.innerHTML += `"And so I will sink down to my watery grave. But know this, toe-haver, I spit at you and your kind even as I march to oblivion."<br>`;
         LOG.innerHTML += `${this.name} dies<br> A way to ascend the castle has been revealed.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
