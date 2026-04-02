@@ -43,6 +43,15 @@ const LVL_UI = document.querySelector("#level");
 const EXP = document.querySelector("#exp");
 const NXTLVL = document.querySelector("#nextlvl");
 
+const AB1 = document.querySelector("#ability1");
+const AB2 = document.querySelector("#ability2");
+const AB3 = document.querySelector("#ability3");
+
+var AB_primed = false;
+var AB1_primed = false;
+var AB2_primed = false;
+var AB3_primed = false;
+
 const AM = new AssetManager();
 
 const LM = new LevelManager();
@@ -186,94 +195,121 @@ function processTurn() {
   updateUI();
 }
 
-function handleMovement() { }
+function primeAbility(no) {
+  AB_primed = false;
+  AB1_primed = false;
+  AB2_primed = false;
+  AB2_primed = false;
+
+  if (no === 1) {
+    AB_primed = true;
+    AB1_primed = true;
+  } else if (no === 2) {
+    AB_primed = true;
+    AB2_primed = true;
+  } else if (no === 3) {
+    AB_primed = true;
+    AB3_primed = true;
+  }
+}
+
+function handlePlayerMovement(tgt_x, tgt_y, dir_x, dir_y) {
+  let endturn = false;
+  if (LM.currentLevel.GRID[tgt_x][tgt_y] === 0) {
+    LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
+    PLAYER.grid_x += dir_x;
+    PLAYER.grid_y += dir_y;
+    LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
+    endturn = true;
+
+  } else if (LM.currentLevel.isEnemy(tgt_x, tgt_y)) {
+    PLAYER.attack(LM.currentLevel.getEnemyByCoord(tgt_x, tgt_y));
+    endturn = true;
+  } else if (LM.currentLevel.GRID[tgt_x][tgt_y] === 125) {
+    LM.currentLevel.getPickupByCoord(tgt_x, tgt_y).remove();
+    endturn = true;
+  }
+
+  return endturn;
+}
 
 function keyDownHandler(e) {
   if (!PLAYER.active) return;
   let endturn = false;
 
-  if (e.key === "Right" || e.key === "ArrowRight" || e.key === "d") {
+  if (e.key === "Right" || e.key === "ArrowRight" || e.key === "d" || e.keyCode === 102) {
     const nx = PLAYER.grid_x + 1;
     const ny = PLAYER.grid_y;
 
-    if (LM.currentLevel.GRID[nx][ny] === 0) {
-
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
-      PLAYER.grid_x += 1;
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
-
-      endturn = true;
-    } else if (LM.currentLevel.isEnemy(nx, ny)) {
-      PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
-      endturn = true;
-    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
-      LM.currentLevel.getPickupByCoord(nx, ny).remove();
-      endturn = true;
-    }
+    endturn = handlePlayerMovement(nx,ny, 1, 0);
   }
 
-  else if (e.key === "Left" || e.key === "ArrowLeft" || e.key === "a") {
+  else if (e.key === "Left" || e.key === "ArrowLeft" || e.key === "a" || e.keyCode === 100) {
     const nx = PLAYER.grid_x - 1;
     const ny = PLAYER.grid_y;
 
-    if (LM.currentLevel.GRID[nx][ny] === 0) {
-
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
-      PLAYER.grid_x -= 1;
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
-
-      endturn = true;
-    } else if (LM.currentLevel.isEnemy(nx, ny)) {
-      PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
-      endturn = true;
-    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
-      LM.currentLevel.getPickupByCoord(nx, ny).remove();
-      endturn = true;
-    }
+    endturn = handlePlayerMovement(nx,ny, -1, 0);
   }
 
-  else if (e.key === "Up" || e.key === "ArrowUp" || e.key === "w") {
+  else if (e.key === "Up" || e.key === "ArrowUp" || e.key === "w" || e.keyCode === 104) {
     const nx = PLAYER.grid_x;
     const ny = PLAYER.grid_y - 1;
 
-    if (LM.currentLevel.GRID[nx][ny] === 0) {
-
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
-      PLAYER.grid_y -= 1;
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
-
-      endturn = true;
-    } else if (LM.currentLevel.isEnemy(nx, ny)) {
-      PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
-      endturn = true;
-    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
-      LM.currentLevel.getPickupByCoord(nx, ny).remove();
-      endturn = true;
-    }
+    endturn = handlePlayerMovement(nx,ny, 0, -1);
   }
 
-  else if (e.key === "Down" || e.key === "ArrowDown" || e.key === "s") {
+  else if (e.key === "Down" || e.key === "ArrowDown" || e.key === "s" || e.keyCode === 98) {
     const nx = PLAYER.grid_x;
     const ny = PLAYER.grid_y + 1;
 
-    if (LM.currentLevel.GRID[nx][ny] === 0) {
+    endturn = handlePlayerMovement(nx,ny, 0, 1);
+  }
+  //Diagonal movement
+  //left down
+  else if (e.keyCode === 97) {
+    const nx = PLAYER.grid_x - 1;
+    const ny = PLAYER.grid_y + 1;
 
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
-      PLAYER.grid_y += 1;
-      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
+    endturn = handlePlayerMovement(nx,ny, -1, 1);
+  }
+  //right down
+  else if (e.keyCode === 99) {
+    const nx = PLAYER.grid_x + 1;
+    const ny = PLAYER.grid_y + 1;
 
-      endturn = true;
-    } else if (LM.currentLevel.isEnemy(nx, ny)) {
-      PLAYER.attack(LM.currentLevel.getEnemyByCoord(nx, ny));
-      endturn = true;
-    } else if (LM.currentLevel.GRID[nx][ny] === 125) {
-      LM.currentLevel.getPickupByCoord(nx, ny).remove();
+    endturn = handlePlayerMovement(nx,ny, 1, 1);
+  }
+  //left up
+  else if (e.keyCode === 103) {
+    const nx = PLAYER.grid_x - 1;
+    const ny = PLAYER.grid_y - 1;
+
+    endturn = handlePlayerMovement(nx,ny, -1, -1);
+  }
+  //right up
+  else if (e.keyCode === 105) {
+    const nx = PLAYER.grid_x + 1;
+    const ny = PLAYER.grid_y - 1;
+
+    endturn = handlePlayerMovement(nx,ny, 1, -1);
+  }
+
+  else if (e.key === " " || e.code === "Space" || e.key === "Space" || e.keyCode === 32 || e.keyCode == 101) {
+    if (AB_primed) {
+      primeAbility(0);
+    } else {
       endturn = true;
     }
   }
 
-  else if (e.key === " " || e.code === "Space" || e.key === "Space" || e.keyCode === 32) {
-    endturn = true;
+  else if (e.key === "Digit1" || e.keyCode === 49) {
+    primeAbility(1);
+  }
+  else if (e.key === "Digit2" || e.keyCode === 50) {
+    primeAbility(2);
+  }
+  else if (e.key === "Digit3" || e.keyCode === 51) {
+    primeAbility(3);
   }
 
   if (endturn) {
@@ -296,8 +332,8 @@ function mouseClickHandler(e) {
       LOG.innerHTML += `HP: ${e.hp} AC: ${e.ac} AB: ${e.ab} DMG: ${e.dd}+${e.db}<br>`;
       LOG.scrollTop = LOG.scrollHeight;
     }
-  }else{
-    const p = LM.currentLevel.getPickupByCoord(x,y);
+  } else {
+    const p = LM.currentLevel.getPickupByCoord(x, y);
     LOG.innerHTML += `- ${p.name} -<br> ${p.description}<br>`;
     LOG.scrollTop = LOG.scrollHeight;
   }

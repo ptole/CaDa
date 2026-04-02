@@ -29,7 +29,7 @@ class Gigathraumatrix extends Entity {
         AM.audio["boss"].play();
 
         LOG.innerHTML += `${this.name}:<br>`;
-        LOG.innerHTML += `"You stand before the mightiest warrior of all the realms. There will be no shame in your defeat."<br>`;
+        LOG.innerHTML += `"You stand before the mightiest warrior of Earthrealm. You need not to feel ashamed in your inevitable defeat."<br>`;
         LOG.scrollTop = LOG.scrollHeight;
 
     }
@@ -50,6 +50,7 @@ class Gigathraumatrix extends Entity {
         AM.audio["pressure"].loop = true;
         AM.audio["pressure"].play();
 
+        LOG.innerHTML += `${this.name}: "Finally. The sweet embrace of death. For ages I had been undefeated. A purposeless existence, without excitement. Thank you, warrior."<br>`;
         LOG.innerHTML += `${this.name} dies<br> A way to ascend the castle has been revealed.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();

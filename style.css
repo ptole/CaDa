@@ -14,37 +14,53 @@ body {
 }
 
 /* MAIN MENU*/
-@keyframes whiteYellowWhite{
-  0% {color:white}
-  25% {color:yellow}
-  50% {color: orange;}
-  75% {color: yellow;}
-  100% {color: white;}
+@keyframes whiteYellowWhite {
+    0% {
+        color: white
+    }
+
+    25% {
+        color: yellow
+    }
+
+    50% {
+        color: orange;
+    }
+
+    75% {
+        color: yellow;
+    }
+
+    100% {
+        color: white;
+    }
 
 }
 
 .wyw {
-  animation-name:whiteYellowWhite;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
+    animation-name: whiteYellowWhite;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
 }
 
 .main-content {
     text-align: center;
-    min-height:85vh;
-  overflow-wrap: break-word;
+    min-height: 85vh;
+    overflow-wrap: break-word;
 }
 
 .bottom-content {
     position: relative;
     border: 1px solid white;
-    padding:15px;
-    min-height:10vh;
+    padding: 15px;
+    min-height: 10vh;
 }
+
 /* REST OF THE GAME*/
 
 #textbox {
-    display:none; /* will be Flex once game is loaded*/
+    display: none;
+    /* will be Flex once game is loaded*/
     position: relative;
     border: 1px solid white;
     max-height: 15vh;
@@ -56,12 +72,12 @@ body {
     float: left;
     width: 50%;
     max-width: 50%;
-    overflow-y:scroll;
+    overflow-y: scroll;
     scrollbar-color: white;
     scrollbar-width: thin;
     text-wrap: wrap;
     text-align: left;
-    font-size:15px;
+    font-size: 15px;
     min-width: 50%;
 
 }
@@ -70,14 +86,22 @@ body {
     padding: 15px;
     float: right;
     width: 50%;
-    min-height:100%;
-    font-size:20px;
+    min-height: 100%;
+    font-size: 20px;
 }
 
 #morestats {
     padding: 15px;
     float: right;
     width: 50%;
-    min-height:100%;
-    font-size:20px;
+    min-height: 100%;
+    font-size: 20px;
+}
+
+#abilitywindow {
+    padding: 15px;
+    float: right;
+    width: 50%;
+    min-height: 100%;
+    font-size: 20px;
 }

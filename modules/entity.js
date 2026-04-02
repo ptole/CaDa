@@ -32,50 +32,28 @@ class Entity {
 
     paid; //passive id, meant to separate different pickups from eachother
 
-    basicTrigger(){
+    basicTrigger() {
         this.active = true;
     }
 
     basicMove(target) {
-        if(!this.active)
+        if (!this.active)
             return;
 
         const dx = target.grid_x - this.grid_x;
         const dy = target.grid_y - this.grid_y;
 
-        if (Math.abs(dx) > Math.abs(dy)) {
-            const nx = this.grid_x + Math.sign(dx);
+        const nx = this.grid_x + Math.sign(dx);
+        const ny = this.grid_y + Math.sign(dy);
 
-            if (this.map.GRID[nx][this.grid_y] === 1) {
-                this.attack(target, this.map.GRID);
-
-            } else if (this.map.GRID[nx][this.grid_y] === 0) {
-                this.map.GRID[this.grid_x][this.grid_y] = 0;
-                this.grid_x = nx;
-                this.map.GRID[this.grid_x][this.grid_y] = this.id;
-
-            } else {
-
-                //Do nothing
-            }
-
-        } else {
-
-            const ny = this.grid_y + Math.sign(dy);
-
-            if (this.map.GRID[this.grid_x][ny] === 1) {
-                this.attack(target, this.map.GRID);
-
-            } else if (this.map.GRID[this.grid_x][ny] === 0) {
-
-                this.map.GRID[this.grid_x][this.grid_y] = 0;
-                this.grid_y = ny;
-                this.map.GRID[this.grid_x][this.grid_y] = this.id;
-
-            } else {
-
-                //Do nothing
-            }
+        if (this.map.GRID[nx][ny] === 1) {
+            this.attack(target, this.map.GRID);
+        }
+        else if (this.map.GRID[nx][ny] === 0) {
+            this.map.GRID[this.grid_x][this.grid_y] = 0;
+            this.grid_x = nx;
+            this.grid_y = ny;
+            this.map.GRID[this.grid_x][this.grid_y] = this.id;
         }
     };
 
@@ -84,13 +62,13 @@ class Entity {
         let rslt = d20 + this.ab;
         LOG.innerHTML += `${this.name} attacks ${target.name}<br>`;
 
-        if(rslt >= target.ac){
+        if (rslt >= target.ac) {
             LOG.innerHTML += `${this.name} rolls ${d20} + ${this.ab} = ${rslt} and hits!<br>`;
             let dmgdice = rollDice(this.dd);
             rslt = dmgdice + this.db;
             LOG.innerHTML += `${this.name} hits ${target.name} for ${dmgdice} + ${this.db} = ${rslt}<br>`;
             target.hp -= rslt;
-        }else{
+        } else {
             LOG.innerHTML += `${this.name} rolls ${d20} + ${this.ab} = ${rslt} and misses<br>`;
         }
 

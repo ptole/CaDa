@@ -90,11 +90,26 @@
             {
                 "name":"gladiator",
                 "path":"./data/sprites/gladiator.png"
-            }
-            ,
+            },
             {
                 "name":"giga",
                 "path":"./data/sprites/giga.png"
+            },
+            {
+                "name":"ice",
+                "path":"./data/sprites/ice.png"
+            },
+            {
+                "name":"fire",
+                "path":"./data/sprites/fire.png"
+            },
+            {
+                "name":"wave",
+                "path":"./data/sprites/wave.png"
+            },
+            {
+                "name":"sparkle",
+                "path":"./data/sprites/sparkle.png"
             }
         ]
     }

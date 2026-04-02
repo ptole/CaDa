@@ -33,8 +33,8 @@ class Level {
     triggerInactives(x, y) {
         let indecies = [];
         for (let i = 0; i < this.inactives.length; i++) {
-            if (Math.abs(this.inactives[i].grid_x - x) <= 6) {
-                if (Math.abs(this.inactives[i].grid_y - y) <= 6) {
+            if (Math.abs(this.inactives[i].grid_x - x) <= 7) {
+                if (Math.abs(this.inactives[i].grid_y - y) <= 7) {
                     indecies.push(i);
                     this.inactives[i].trigger();
                 }
