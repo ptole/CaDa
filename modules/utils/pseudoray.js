@@ -1,4 +1,4 @@
-export function pseudoray(origin_x, origin_y, dir_x, dir_y, GRID) {
+export function pseudoray(origin_x, origin_y, dir_x, dir_y, GRID, keepEnd = true) {
     let path = [];
 
     let nx = origin_x + dir_x;
@@ -11,6 +11,9 @@ export function pseudoray(origin_x, origin_y, dir_x, dir_y, GRID) {
             nx += dir_x;
             ny += dir_y;
         }else{
+            if(keepEnd){
+                path.push([nx, ny]);
+            }
             break;
         }
     }
