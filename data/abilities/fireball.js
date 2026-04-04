@@ -3,6 +3,7 @@ import { LM, AM, LOG, PLAYER } from "../../main.js";
 import { pseudoray } from "../../modules/utils/pseudoray.js";
 import { Effect } from "../../modules/effect.js";
 import { rollDice } from "../../modules/utils/dice.js";
+import { rollMultipleDice } from "../../modules/utils/dice.js";
 
 class Fireball extends Ability {
 
@@ -43,19 +44,16 @@ class Fireball extends Ability {
             let enemy = LM.currentLevel.getEnemyById(LM.currentLevel.GRID[e[0]][e[1]]);
             if (enemy) {
 
-                let rslt = 0;
-                for (let i = 0; i < this.dcount; i++) {
-                    rslt += rollDice(this.dd);
-                }
-
-                LOG.innerHTML += `${enemy.name} takes ${rslt} damage!<br>`;
+                const dmg = rollMultipleDice(this.dcount,this.dd);
+                LOG.innerHTML += `${enemy.name} takes ${dmg} damage!<br>`;
                 LOG.scrollTop = LOG.scrollHeight;
 
-                enemy.takeDamage(rslt);
+                enemy.takeDamage(dmg);
             } else if(PLAYER.grid_x === e[0] && PLAYER.grid_y === e[1]){
-                LOG.innerHTML += `${PLAYER.name} takes ${rslt} damage!<br>`;
+                const dmg = rollMultipleDice(this.dcount,this.dd);
+                LOG.innerHTML += `${PLAYER.name} takes ${dmg} damage!<br>`;
                 LOG.scrollTop = LOG.scrollHeight;
-                PLAYER.takeDamage(rslt);
+                PLAYER.takeDamage(dmg);
             }
         });
     }
