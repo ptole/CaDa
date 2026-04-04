@@ -9,9 +9,11 @@ class Player extends Entity {
     current_xp = 0;
     nxt_lvl = 5;
 
-    slot_1 = undefined;
-    slot_2 = undefined;
-    slot_3 = undefined;
+    abilities = {
+        "1": undefined,
+        "2": undefined,
+        "3": undefined
+    }
 
     constructor() {
         super();
@@ -49,7 +51,7 @@ class Player extends Entity {
             let dmgdice = rollDice(this.dd);
             rslt = dmgdice + this.db;
             LOG.innerHTML += `${this.name} hit ${target.name} for ${dmgdice} + ${this.db} = ${rslt}<br>`;
-            target.hp -= rslt;
+            target.takeDamage(rslt);
         } else {
             LOG.innerHTML += `${this.name} roll ${d20} + ${this.ab} = ${rslt} and miss<br>`;
         }
@@ -57,10 +59,6 @@ class Player extends Entity {
         LOG.scrollTop = LOG.scrollHeight;
 
         AM.audio["attack_1"].play();
-
-        if (target.hp < 1) {
-            target.remove();
-        }
     };
 
     addXP(amount) {
@@ -93,6 +91,29 @@ class Player extends Entity {
         LOG.innerHTML += `${this.name} are filled with faith and hope as you ascend to level ${this.level}!<br>`;
         LOG.scrollTop = LOG.scrollHeight;
     }
+
+    addAbility(a) {
+        let i = 0;
+        for (const [key, value] of Object.entries(this.abilities)) {
+            if (value === undefined) {
+                i = key;
+                break;
+            }
+        }
+
+        if (i !== "0") {
+            this.abilities[i] = a;
+            return parseInt(i);
+        } else {
+            return i;
+        }
+    }
+
+    useAbility(slot,dir_x,dir_y){
+        this.abilities[slot.toString()].use(this.grid_x, this.grid_y, dir_x,dir_y);
+        this.abilities[slot.toString()] = undefined;
+    }
+
 }
 
 export { Player };

@@ -4,6 +4,7 @@ class Level {
     enemies = {};   //object, id : object
     walls = [];     //array of [x,y] pairs
     pickups = [];   //array of objects
+    effects = [];   //array of objects
 
     inactives; //array of entities. basically enemies but inactives.
     freeSpaceForSpawn; //this is getting way too complicated
@@ -18,6 +19,7 @@ class Level {
         this.inactives = [];
         this.freeSpaceForSpawn = [];
         this.pickups = [];
+        this.effects = [];
 
         for (let i = 0; i < this.size; i++) {
             this.GRID.push(new Uint8Array(this.size));
@@ -123,6 +125,9 @@ class Level {
     }
 
     getEnemyById(id) {
+        if(id === 0 || id === 125 || id === 127 || id === 1){
+            return undefined;
+        }
         return this.enemies[id.toString()];
     }
 

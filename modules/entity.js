@@ -67,7 +67,7 @@ class Entity {
             let dmgdice = rollDice(this.dd);
             rslt = dmgdice + this.db;
             LOG.innerHTML += `${this.name} hits ${target.name} for ${dmgdice} + ${this.db} = ${rslt}<br>`;
-            target.hp -= rslt;
+            target.takeDamage(rslt);
         } else {
             LOG.innerHTML += `${this.name} rolls ${d20} + ${this.ab} = ${rslt} and misses<br>`;
         }
@@ -75,11 +75,14 @@ class Entity {
         LOG.scrollTop = LOG.scrollHeight;
 
         AM.audio["attack_1"].play();
-
-        if (target.hp < 1) {
-            target.remove();
-        }
     };
+
+    takeDamage(amount){
+        this.hp -= amount;
+        if(this.hp < 1){
+            this.remove();
+        }
+    }
 
     basicDeath() {
         this.map.removeEntity(this);

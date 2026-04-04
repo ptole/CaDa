@@ -28,6 +28,11 @@
                     "shorthand":"abpu",
                     "count":2,
                     "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },

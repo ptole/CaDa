@@ -47,10 +47,7 @@ const AB1 = document.querySelector("#ability1");
 const AB2 = document.querySelector("#ability2");
 const AB3 = document.querySelector("#ability3");
 
-var AB_primed = false;
-var AB1_primed = false;
-var AB2_primed = false;
-var AB3_primed = false;
+var AB_primed = 0;
 
 const AM = new AssetManager();
 
@@ -158,6 +155,24 @@ function updateUI() {
   LVL_UI.innerHTML = PLAYER.level;
   EXP.innerHTML = PLAYER.current_xp;
   NXTLVL.innerHTML = PLAYER.nxt_lvl;
+
+  ///
+  AB1.innerHTML = PLAYER.abilities["1"] ? PLAYER.abilities["1"].name : "Empty";
+  AB2.innerHTML = PLAYER.abilities["2"] ? PLAYER.abilities["2"].name : "Empty";
+  AB3.innerHTML = PLAYER.abilities["3"] ? PLAYER.abilities["3"].name : "Empty";
+}
+
+function drawEffects() {
+  while(LM.currentLevel.effects.length > 0){
+    drawEffect(LM.currentLevel.effects.pop());
+  }
+}
+
+function drawEffect(effect) {
+  for (let i = 0; i < effect.coord_list.length; i++) {
+    let e = effect.coord_list[i];
+    ctx.drawImage(effect.sprite, ((e[0] - grid_offset_x) * TILE_SIZE) + effect.sprite_offset_x, ((e[1] - grid_offset_y) * TILE_SIZE) + effect.sprite_offset_y);
+  }
 }
 
 function draw() {
@@ -172,6 +187,7 @@ function draw() {
   drawPickups();
   drawEntities();
   drawPlayer();
+  drawEffects();
 }
 
 
@@ -195,39 +211,29 @@ function processTurn() {
   updateUI();
 }
 
-function primeAbility(no) {
-  AB_primed = false;
-  AB1_primed = false;
-  AB2_primed = false;
-  AB2_primed = false;
-
-  if (no === 1) {
-    AB_primed = true;
-    AB1_primed = true;
-  } else if (no === 2) {
-    AB_primed = true;
-    AB2_primed = true;
-  } else if (no === 3) {
-    AB_primed = true;
-    AB3_primed = true;
-  }
-}
-
 function handlePlayerMovement(tgt_x, tgt_y, dir_x, dir_y) {
   let endturn = false;
-  if (LM.currentLevel.GRID[tgt_x][tgt_y] === 0) {
-    LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
-    PLAYER.grid_x += dir_x;
-    PLAYER.grid_y += dir_y;
-    LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
-    endturn = true;
 
-  } else if (LM.currentLevel.isEnemy(tgt_x, tgt_y)) {
-    PLAYER.attack(LM.currentLevel.getEnemyByCoord(tgt_x, tgt_y));
+  if (AB_primed !== 0) {
+    PLAYER.useAbility(AB_primed, dir_x, dir_y);
+    AB_primed = 0;
     endturn = true;
-  } else if (LM.currentLevel.GRID[tgt_x][tgt_y] === 125) {
-    LM.currentLevel.getPickupByCoord(tgt_x, tgt_y).remove();
-    endturn = true;
+  } else {
+
+    if (LM.currentLevel.GRID[tgt_x][tgt_y] === 0) {
+      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
+      PLAYER.grid_x += dir_x;
+      PLAYER.grid_y += dir_y;
+      LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
+      endturn = true;
+
+    } else if (LM.currentLevel.isEnemy(tgt_x, tgt_y)) {
+      PLAYER.attack(LM.currentLevel.getEnemyByCoord(tgt_x, tgt_y));
+      endturn = true;
+    } else if (LM.currentLevel.GRID[tgt_x][tgt_y] === 125) {
+      LM.currentLevel.getPickupByCoord(tgt_x, tgt_y).remove();
+      endturn = true;
+    }
   }
 
   return endturn;
@@ -241,28 +247,28 @@ function keyDownHandler(e) {
     const nx = PLAYER.grid_x + 1;
     const ny = PLAYER.grid_y;
 
-    endturn = handlePlayerMovement(nx,ny, 1, 0);
+    endturn = handlePlayerMovement(nx, ny, 1, 0);
   }
 
   else if (e.key === "Left" || e.key === "ArrowLeft" || e.key === "a" || e.keyCode === 100) {
     const nx = PLAYER.grid_x - 1;
     const ny = PLAYER.grid_y;
 
-    endturn = handlePlayerMovement(nx,ny, -1, 0);
+    endturn = handlePlayerMovement(nx, ny, -1, 0);
   }
 
   else if (e.key === "Up" || e.key === "ArrowUp" || e.key === "w" || e.keyCode === 104) {
     const nx = PLAYER.grid_x;
     const ny = PLAYER.grid_y - 1;
 
-    endturn = handlePlayerMovement(nx,ny, 0, -1);
+    endturn = handlePlayerMovement(nx, ny, 0, -1);
   }
 
   else if (e.key === "Down" || e.key === "ArrowDown" || e.key === "s" || e.keyCode === 98) {
     const nx = PLAYER.grid_x;
     const ny = PLAYER.grid_y + 1;
 
-    endturn = handlePlayerMovement(nx,ny, 0, 1);
+    endturn = handlePlayerMovement(nx, ny, 0, 1);
   }
   //Diagonal movement
   //left down
@@ -270,46 +276,58 @@ function keyDownHandler(e) {
     const nx = PLAYER.grid_x - 1;
     const ny = PLAYER.grid_y + 1;
 
-    endturn = handlePlayerMovement(nx,ny, -1, 1);
+    endturn = handlePlayerMovement(nx, ny, -1, 1);
   }
   //right down
   else if (e.keyCode === 99) {
     const nx = PLAYER.grid_x + 1;
     const ny = PLAYER.grid_y + 1;
 
-    endturn = handlePlayerMovement(nx,ny, 1, 1);
+    endturn = handlePlayerMovement(nx, ny, 1, 1);
   }
   //left up
   else if (e.keyCode === 103) {
     const nx = PLAYER.grid_x - 1;
     const ny = PLAYER.grid_y - 1;
 
-    endturn = handlePlayerMovement(nx,ny, -1, -1);
+    endturn = handlePlayerMovement(nx, ny, -1, -1);
   }
   //right up
   else if (e.keyCode === 105) {
     const nx = PLAYER.grid_x + 1;
     const ny = PLAYER.grid_y - 1;
 
-    endturn = handlePlayerMovement(nx,ny, 1, -1);
+    endturn = handlePlayerMovement(nx, ny, 1, -1);
   }
 
   else if (e.key === " " || e.code === "Space" || e.key === "Space" || e.keyCode === 32 || e.keyCode == 101) {
-    if (AB_primed) {
-      primeAbility(0);
+    if (AB_primed !== 0) {
+      AB_primed = 0;
     } else {
       endturn = true;
     }
   }
 
   else if (e.key === "Digit1" || e.keyCode === 49) {
-    primeAbility(1);
+    if (PLAYER.abilities["1"] !== undefined) {
+      AB_primed = 1;
+      LOG.innerHTML += `${PLAYER.abilities["1"].name} primed<br>`;
+      LOG.scrollTop = LOG.scrollHeight;
+    }
   }
   else if (e.key === "Digit2" || e.keyCode === 50) {
-    primeAbility(2);
+    if (PLAYER.abilities["2"] !== undefined) {
+      AB_primed = 2;
+      LOG.innerHTML += `${PLAYER.abilities["2"].name} primed<br>`;
+      LOG.scrollTop = LOG.scrollHeight;
+    }
   }
   else if (e.key === "Digit3" || e.keyCode === 51) {
-    primeAbility(3);
+    if (PLAYER.abilities["3"] !== undefined) {
+      AB_primed = 3;
+      LOG.innerHTML += `${PLAYER.abilities["3"].name} primed<br>`;
+      LOG.scrollTop = LOG.scrollHeight;
+    }
   }
 
   if (endturn) {
@@ -325,14 +343,14 @@ function mouseClickHandler(e) {
   x += grid_offset_x;
   y += grid_offset_y;
   const id = LM.currentLevel.GRID[x][y];
-  if ((id != 0) && (id != 125)) {
+  if ((id !== 0) && (id !== 125)) {
     if (LM.currentLevel.isEnemy(x, y)) {
       const e = LM.currentLevel.getEnemyById(id);
       LOG.innerHTML += `- ${e.name} -<br> ${e.description}<br>`;
       LOG.innerHTML += `HP: ${e.hp} AC: ${e.ac} AB: ${e.ab} DMG: ${e.dd}+${e.db}<br>`;
       LOG.scrollTop = LOG.scrollHeight;
     }
-  } else {
+  } else if (id === 125) {
     const p = LM.currentLevel.getPickupByCoord(x, y);
     LOG.innerHTML += `- ${p.name} -<br> ${p.description}<br>`;
     LOG.scrollTop = LOG.scrollHeight;
