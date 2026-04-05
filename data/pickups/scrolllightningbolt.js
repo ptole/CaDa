@@ -1,18 +1,18 @@
 import { Entity } from "../../modules/entity.js";
 import { LOG, AM, PLAYER } from "../../main.js";
-import { Fireball } from "../abilities/fireball.js";
+import { Lightningbolt } from "../abilities/lightningbolt.js";
 
 
-class ScrollFireball extends Entity {
+class ScrollLightningbolt extends Entity {
 
     ability;
 
     constructor(dummy) {
         super();
-        this.ability = new Fireball();
-        super.name = "Scroll of Fireball";
-        super.description = `Shoot a fireball, dealing 5d6 damage in a 1 tile radius.`;
-        super.sprite = AM.sprites["scroll_fire"];
+        this.ability = new Lightningbolt();
+        super.name = "Scroll of Lightning bolt";
+        super.description = `Shoot a bolt of lightning, dealing 5d6 damage in a line.`;
+        super.sprite = AM.sprites["scroll_lightning"];
         super.active = false;
         super.remove = this.consume;
         super.id = 125;
@@ -28,4 +28,4 @@ class ScrollFireball extends Entity {
     }
 }
 
-export { ScrollFireball };
+export { ScrollLightningbolt };

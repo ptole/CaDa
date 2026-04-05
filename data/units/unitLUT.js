@@ -6,6 +6,7 @@ import { ACPickup } from "../pickups/acpickup.js";
 import { Gigathraumatrix } from "./gigathraumatrix.js";
 import { Gladiator } from "./gladiator.js";
 import { ScrollFireball } from "../pickups/scrollfireball.js";
+import { ScrollLightningbolt } from "../pickups/scrolllightningbolt.js";
 
 
 const UNIT_LUT = {
@@ -14,7 +15,7 @@ const UNIT_LUT = {
     "giga":Gigathraumatrix,
     "gladi":Gladiator,
 
-
+    "slb": ScrollLightningbolt,
     "sfb":ScrollFireball,
     "hppu": HPPickup,
     "acpu": ACPickup,

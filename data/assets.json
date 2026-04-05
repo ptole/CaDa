@@ -28,6 +28,10 @@
             {
                 "name":"pickup",
                 "path":"./data/audio/pickup.mp3"
+            },
+            {
+                "name":"magic",
+                "path":"./data/audio/magic.mp3"
             }
         ],
         "sprites":[
@@ -118,6 +122,18 @@
             {
                 "name":"scroll",
                 "path":"./data/sprites/scroll.png"
+            },
+            {
+                "name":"lightning",
+                "path":"./data/sprites/lightning.png"
+            },
+            {
+                "name":"scroll_fire",
+                "path":"./data/sprites/scroll_fire.png"
+            },
+            {
+                "name":"scroll_lightning",
+                "path":"./data/sprites/scroll_lightning.png"
             }
         ]
     }

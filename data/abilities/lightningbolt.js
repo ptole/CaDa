@@ -5,7 +5,7 @@ import { Effect } from "../../modules/effect.js";
 import { rollDice } from "../../modules/utils/dice.js";
 import { rollMultipleDice } from "../../modules/utils/dice.js";
 
-class Fireball extends Ability {
+class Lightningbolt extends Ability {
 
     effect;
     dd = 6;
@@ -14,33 +14,21 @@ class Fireball extends Ability {
     constructor() {
         super();
         super.use = this.cast;
-        super.name = "Fireball";
-        super.description = "5d6 damage in a square";
-        this.effect = new Effect(AM.sprites["fire"], []);
+        super.name = "Lightning bolt";
+        super.description = "5d6 damage in a line";
+        this.effect = new Effect(AM.sprites["lightning"], []);
     }
 
     cast(origin_x, origin_y, dir_x, dir_y) {
         const path = pseudoray(origin_x, origin_y, dir_x, dir_y, LM.currentLevel.GRID);
-        const end = path.pop();
 
-        const area = [];
-        area.push([end[0] - 1, end[1] + 1])
-        area.push([end[0], end[1] + 1])
-        area.push([end[0] + 1, end[1] + 1])
-        area.push([end[0] - 1, end[1]])
-        area.push([end[0], end[1]])
-        area.push([end[0] + 1, end[1]])
-        area.push([end[0] - 1, end[1] - 1])
-        area.push([end[0], end[1] - 1])
-        area.push([end[0] + 1, end[1] - 1])
-
-        this.effect.coord_list = area;
+        this.effect.coord_list = path;
         LM.currentLevel.effects.push(this.effect);
 
         LOG.innerHTML += `You cast ${this.name}<br>`;
         LOG.scrollTop = LOG.scrollHeight;
 
-        area.forEach(e => {
+        path.forEach(e => {
             let enemy = LM.currentLevel.getEnemyById(LM.currentLevel.GRID[e[0]][e[1]]);
             if (enemy) {
 
@@ -61,4 +49,4 @@ class Fireball extends Ability {
     }
 }
 
-export { Fireball };
+export { Lightningbolt };

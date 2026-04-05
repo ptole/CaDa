@@ -33,6 +33,11 @@
                     "shorthand":"sfb",
                     "count":5,
                     "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
