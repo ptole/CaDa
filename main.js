@@ -11,8 +11,9 @@ const intro = "Grand Wizard Barnogoth is preparing a great spell that will creat
 window.onload = (event) => {
 
   const m = document.getElementById("main-content");
+  const txt_tgt = document.getElementById("introtext");
 
-  printWordByWord(m, intro, 50);
+  printWordByWord(txt_tgt, intro, 50);
   const startGameEvent = async function (event) {
     if (event.key === "Enter") {
 
