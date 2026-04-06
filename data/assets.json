@@ -155,6 +155,26 @@
             {
                 "name":"jester",
                 "path":"./data/sprites/jester.png"
+            },
+            {
+                "name":"elephant",
+                "path":"./data/sprites/elephant.png"
+            },
+            {
+                "name":"gorilla",
+                "path":"./data/sprites/gorilla.png"
+            },
+            {
+                "name":"giraffe",
+                "path":"./data/sprites/giraffe.png"
+            },
+            {
+                "name":"undead",
+                "path":"./data/sprites/undead.png"
+            },
+            {
+                "name":"gloomkaiser",
+                "path":"./data/sprites/gloomkaiser.png"
             }
         ]
     }

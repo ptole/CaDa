@@ -8,6 +8,13 @@ import { Gigathraumatrix } from "./gigathraumatrix.js";
 import { Gladiator } from "./gladiator.js";
 import { ScrollFireball } from "../pickups/scrollfireball.js";
 import { ScrollLightningbolt } from "../pickups/scrolllightningbolt.js";
+import { Courtjester } from "./courtjester.js";
+import { Elephant } from "./elephant.js";
+import { Gorilla } from "./gorilla.js";
+import { Giraffe } from "./giraffe.js";
+import { Demilich } from "./demilich.js";
+import { Undead } from "./undead.js";
+import { Gloomkaiser } from "./gloomkaiser.js";
 
 
 const UNIT_LUT = {
@@ -16,7 +23,13 @@ const UNIT_LUT = {
     "pp": PrincePagurus,
     "giga":Gigathraumatrix,
     "gladi":Gladiator,
-
+    "jester":Courtjester,
+    "babar":Elephant,
+    "gor":Gorilla,
+    "grf":Giraffe,
+    "lch":Demilich,
+    "ud":Undead,
+    "gkz":Gloomkaiser,
     "slb": ScrollLightningbolt,
     "sfb":ScrollFireball,
     "hppu": HPPickup,

@@ -20,7 +20,7 @@
             "pickups": [
                 {
                     "shorthand":"hppu",
-                    "count":20,
+                    "count":15,
                     "value":1
                 },
                 {
@@ -46,7 +46,7 @@
             ]
         },
         "2": {
-            "name": "Workshops of Wrath",
+            "name": "Pits of Wrath",
             "description":"The sound of clashing metal echoes from endless gladiator pits, where only the strongest survive.",
             "enemies": [
                 {
@@ -61,8 +61,8 @@
             "pickups": [
                 {
                     "shorthand":"hppu",
-                    "count":20,
-                    "value":2
+                    "count":15,
+                    "value":1
                 },
                 {
                     "shorthand":"acpu",
@@ -73,29 +73,112 @@
                     "shorthand":"abpu",
                     "count":2,
                     "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
         "3": {
             "name": "Circus of Sloth",
+            "description":"Exotic animals, bright lights, but not a single smile.",
             "enemies": [
                 {
-                    "shorthand": "tbd",
+                    "shorthand": "jester",
                     "count": 1
+                },
+                {
+                    "shorthand": "gor",
+                    "count": 6
+                },
+                {
+                    "shorthand": "babar",
+                    "count": 6
+                },
+                {
+                    "shorthand": "grf",
+                    "count": 6
+                }
+            ],
+            "pickups": [
+                {
+                    "shorthand":"hppu",
+                    "count":15,
+                    "value":1
+                },
+                {
+                    "shorthand":"acpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"abpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
         "4": {
-            "name": "Great halls of Greed",
+            "name": "Sepulchre of Greed",
+            "description":"Decaying bodies lie everywhere, but as you move forward they start to come back to life.",
             "enemies": [
                 {
                     "shorthand": "lch",
                     "count": 1
+                },
+                {
+                    "shorthand": "ud",
+                    "count": 60
+                }
+            ],
+            "pickups": [
+                {
+                    "shorthand":"hppu",
+                    "count":15,
+                    "value":1
+                },
+                {
+                    "shorthand":"acpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"abpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
         "5": {
-            "name": "Lust",
+            "name": "Breeding chambers of Lust",
+            "description":"Disgusting noises of flesh pounding and flesh and unintelligible screams, along with revolting smells, assault your senses.",
             "enemies": [
                 {
                     "shorthand": "drg",
