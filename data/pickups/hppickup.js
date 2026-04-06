@@ -9,9 +9,9 @@ class HPPickup extends Entity {
     constructor(hpgain) {
         super();
         this.hpgain = hpgain;
-        super.name = "Health pickup";
+        super.name = "Idol of health";
         super.description = `Gain ${this.hpgain} HP`;
-        super.sprite = AM.sprites["heart"];
+        super.sprite = AM.sprites["health"];
         super.active = false;
         super.remove = this.consume;
         super.id = 125;

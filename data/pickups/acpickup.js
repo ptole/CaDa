@@ -9,7 +9,7 @@ class ACPickup extends Entity {
     constructor(armourgain) {
         super();
         this.acgain = armourgain;
-        super.name = "Armour pickup";
+        super.name = "Discarded armour";
         super.description = `Gain ${this.acgain} AC`;
         super.sprite = AM.sprites["shield"];
         super.active = false;

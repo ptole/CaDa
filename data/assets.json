@@ -143,6 +143,14 @@
             {
                 "name":"octopoid",
                 "path":"./data/sprites/octopoid.png"
+            },
+            {
+                "name":"health",
+                "path":"./data/sprites/health.png"
+            },
+            {
+                "name":"tombstone",
+                "path":"./data/sprites/tombstone.png"
             }
         ]
     }

@@ -36,6 +36,8 @@ class Player extends Entity {
     playerDeath() {
         super.active = false;
 
+        super.sprite = AM.sprites["tombstone"];
+
         LOG.innerHTML += `You have died, and with you dies all hope for this world.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
