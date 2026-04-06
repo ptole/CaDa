@@ -39,6 +39,9 @@ class Player extends Entity {
         LOG.innerHTML += `You have died, and with you dies all hope for this world.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
+        AM.audio["boss"].pause();
+        AM.audio["pressure"].pause();
+        AM.audio["gameover"].play();
     }
 
     playerAttack(target) {

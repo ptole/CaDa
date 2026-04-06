@@ -49,14 +49,12 @@ body {
     overflow-wrap: break-word;
 }
 
-.bottom-content {
-    position: relative;
-    border: 1px solid white;
-    padding: 15px;
-    min-height: 10vh;
-}
-
 /* REST OF THE GAME*/
+
+#canvas {
+    min-height: 85vh;
+    max-height: 85vh;
+}
 
 #textbox {
     display: none;
@@ -72,13 +70,13 @@ body {
     float: left;
     width: 50%;
     max-width: 50%;
+    min-width: 50%;
     overflow-y: scroll;
     scrollbar-color: white;
     scrollbar-width: thin;
     text-wrap: wrap;
     text-align: left;
     font-size: 15px;
-    min-width: 50%;
 
 }
 

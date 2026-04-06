@@ -1,6 +1,6 @@
 import { Ability } from "./ability.js";
 import { LM, AM, LOG, PLAYER } from "../../main.js";
-import { pseudoray } from "../../modules/utils/pseudoray.js";
+import { pseudorayIgnoreEntities } from "../../modules/utils/pseudoray.js";
 import { Effect } from "../../modules/effect.js";
 import { rollDice } from "../../modules/utils/dice.js";
 import { rollMultipleDice } from "../../modules/utils/dice.js";
@@ -20,7 +20,7 @@ class Lightningbolt extends Ability {
     }
 
     cast(origin_x, origin_y, dir_x, dir_y) {
-        const path = pseudoray(origin_x, origin_y, dir_x, dir_y, LM.currentLevel.GRID);
+        const path = pseudorayIgnoreEntities(origin_x, origin_y, dir_x, dir_y, LM.currentLevel.GRID);
 
         this.effect.coord_list = path;
         LM.currentLevel.effects.push(this.effect);

@@ -33,6 +33,11 @@
                 "name":"magic",
                 "path":"./data/audio/magic.mp3"
             }
+            ,
+            {
+                "name":"gameover",
+                "path":"./data/audio/gameover.mp3"
+            }
         ],
         "sprites":[
             {

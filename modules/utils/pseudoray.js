@@ -20,3 +20,25 @@ export function pseudoray(origin_x, origin_y, dir_x, dir_y, GRID, keepEnd = true
 
     return path;
 }
+
+export function pseudorayIgnoreEntities(origin_x, origin_y, dir_x, dir_y, GRID, keepEnd = true) {
+    let path = [];
+
+    let nx = origin_x + dir_x;
+    let ny = origin_y + dir_y;
+
+    while (true) {
+        if (GRID[nx][ny] !== 127) {
+            path.push([nx, ny]);
+            nx += dir_x;
+            ny += dir_y;
+        }else{
+            if(keepEnd){
+                path.push([nx, ny]);
+            }
+            break;
+        }
+    }
+
+    return path;
+}
