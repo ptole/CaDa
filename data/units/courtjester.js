@@ -3,13 +3,13 @@ import { LOG, AM } from "../../main.js";
 import { Ladder } from "./ladder.js";
 
 
-class Gigathraumatrix extends Entity {
+class Courtjester extends Entity {
 
     constructor() {
         super();
         super.name = "Dark Blademaster Gigathraumatrix";
         super.description = "The most feared duelist of Earthrealm.";
-        super.sprite = AM.sprites["giga"];
+        super.sprite = AM.sprites["jester"];
         super.sprite_offset_x = -16;
         super.sprite_offset_y = -32;
         super.ab = 2;
@@ -29,13 +29,13 @@ class Gigathraumatrix extends Entity {
         AM.audio["boss"].play();
 
         LOG.innerHTML += `${this.name}:<br>`;
-        LOG.innerHTML += `"You stand before the mightiest warrior of Earthrealm. You need not to feel ashamed in your inevitable defeat."<br>`;
+        LOG.innerHTML += `"Cruelest joke of them all, this life we live, fleeting and pointless."<br>`;
         LOG.scrollTop = LOG.scrollHeight;
 
     }
 
     bossDeath() {
-        let ldr = new Ladder(3);
+        let ldr = new Ladder(4);
         ldr.id = 125;
         ldr.grid_x = this.grid_x;
         ldr.grid_y = this.grid_y;
@@ -51,7 +51,7 @@ class Gigathraumatrix extends Entity {
         AM.audio["pressure"].play();
 
         LOG.innerHTML += `${this.name}:<br>`;
-        LOG.innerHTML += `"Finally. The sweet embrace of death. For ages I had been undefeated. A purposeless existence, without excitement. Thank you, warrior."<br>`;
+        LOG.innerHTML += `"The curtain calls."<br>`;
         LOG.innerHTML += `${this.name} dies<br> A way to ascend the castle has been revealed.<br>`;
         LOG.scrollTop = LOG.scrollHeight;
         AM.audio["death_1"].play();
@@ -62,4 +62,4 @@ class Gigathraumatrix extends Entity {
 
 }
 
-export { Gigathraumatrix };
+export { Courtjester };

@@ -151,6 +151,10 @@
             {
                 "name":"tombstone",
                 "path":"./data/sprites/tombstone.png"
+            },
+            {
+                "name":"jester",
+                "path":"./data/sprites/jester.png"
             }
         ]
     }
