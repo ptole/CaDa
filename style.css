@@ -61,8 +61,8 @@ body {
     /* will be Flex once game is loaded*/
     position: relative;
     border: 1px solid white;
-    max-height: 15vh;
-    min-height: 15vh;
+    max-height: 14vh;
+    min-height: 14vh;
 }
 
 #log {
