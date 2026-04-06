@@ -1,4 +1,5 @@
 import { Crab } from "./crab.js"
+import { Octopoid } from "./octopoid.js";
 import { PrincePagurus } from "./princepagurus.js";
 import { ABPickup } from "../pickups/abpickup.js";
 import { HPPickup } from "../pickups/hppickup.js";
@@ -11,6 +12,7 @@ import { ScrollLightningbolt } from "../pickups/scrolllightningbolt.js";
 
 const UNIT_LUT = {
     "crb": Crab,
+    "8poid": Octopoid,
     "pp": PrincePagurus,
     "giga":Gigathraumatrix,
     "gladi":Gladiator,

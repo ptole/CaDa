@@ -139,6 +139,10 @@
             {
                 "name":"scroll_lightning",
                 "path":"./data/sprites/scroll_lightning.png"
+            },
+            {
+                "name":"octopoid",
+                "path":"./data/sprites/octopoid.png"
             }
         ]
     }
