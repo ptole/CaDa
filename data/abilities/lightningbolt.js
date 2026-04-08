@@ -9,13 +9,13 @@ class Lightningbolt extends Ability {
 
     effect;
     dd = 6;
-    dcount = 5;
+    dcount = 3;
 
     constructor() {
         super();
         super.use = this.cast;
         super.name = "Lightning bolt";
-        super.description = "5d6 damage in a line";
+        super.description = "3d6 damage in a line";
         this.effect = new Effect(AM.sprites["lightning"], []);
     }
 

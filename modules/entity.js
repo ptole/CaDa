@@ -17,6 +17,7 @@ class Entity {
     move = this.basicMove;
     attack = this.basicAttack;
     remove = this.basicDeath;
+    takeDamage = this.basicTakeDamage;
     description;
     name;
     hp = 1;
@@ -73,11 +74,10 @@ class Entity {
         }
 
         LOG.scrollTop = LOG.scrollHeight;
-
-        AM.audio["attack_1"].play();
     };
 
-    takeDamage(amount){
+    basicTakeDamage(amount){
+        AM.audio["attack_1"].play();
         this.hp -= amount;
         if(this.hp < 1){
             this.remove();

@@ -9,13 +9,13 @@ class Fireball extends Ability {
 
     effect;
     dd = 6;
-    dcount = 5;
+    dcount = 3;
 
     constructor() {
         super();
         super.use = this.cast;
         super.name = "Fireball";
-        super.description = "5d6 damage in a square";
+        super.description = "3d6 damage in a square";
         this.effect = new Effect(AM.sprites["fire"], []);
     }
 

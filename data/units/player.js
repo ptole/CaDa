@@ -22,6 +22,7 @@ class Player extends Entity {
         super.description = "Final hope of mankind";
         super.remove = this.playerDeath;
         super.attack = this.playerAttack;
+        super.takeDamage = this.playerTakeDamage;
         super.active = true;
         super.sprite = AM.sprites["hero"];
 
@@ -117,6 +118,14 @@ class Player extends Entity {
     useAbility(slot,dir_x,dir_y){
         this.abilities[slot.toString()].use(this.grid_x, this.grid_y, dir_x,dir_y);
         this.abilities[slot.toString()] = undefined;
+    }
+
+    playerTakeDamage(amount){
+        AM.audio["damtaken"].play();
+        this.hp -= amount;
+        if(this.hp < 1){
+            this.remove();
+        }
     }
 
 }
