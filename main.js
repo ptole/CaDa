@@ -5,6 +5,7 @@ import { LevelManager } from "./modules/levelManager.js";
 import { AssetManager } from "./modules/assetManager.js";
 import { Player } from "./data/units/player.js";
 import { printWordByWord } from "./modules/utils/slowprint.js";
+import { Ability } from "./data/abilities/ability.js";
 
 /* mainmenu stuff */
 const intro = "Grand Wizard Barnogoth is preparing a great spell that will create and bring forth the eighth deadly sin into the world. Nobody knows what it is, but this has to be stopped. <br> <br> Nations and kings have buried their hatchets for the moment, and are laying siege upon the castle of the dark wizard. <br> Dragons, demons and skeletons come pouring out of the castle, but the soldiers of the alliance hold their line. They have chosen from amongst them their greatest hero, who through a secret passage has gained entry to the lowest level of Darkholm Castle with only one mission: To stop and vanquish Barnogoth. <br> <br> The world is counting on (You). <br> <br> Press &lt;Enter&gt; to begin. <br> <br> Controls: <br> &lt;Numpad&gt;, &lt;Arrows&gt; or &lt;WASD&gt; to move, &lt;Numpad 5&gt; or &lt;Space&gt; to stand still. <br> &lt;1,2,3&gt; with &lt;direction&gt; to use an ability and &lt;Left Click&gt; to inspect objects.";
@@ -164,7 +165,7 @@ function updateUI() {
 }
 
 function drawEffects() {
-  while(LM.currentLevel.effects.length > 0){
+  while (LM.currentLevel.effects.length > 0) {
     drawEffect(LM.currentLevel.effects.pop());
   }
 }
@@ -232,8 +233,16 @@ function handlePlayerMovement(tgt_x, tgt_y, dir_x, dir_y) {
       PLAYER.attack(LM.currentLevel.getEnemyByCoord(tgt_x, tgt_y));
       endturn = true;
     } else if (LM.currentLevel.GRID[tgt_x][tgt_y] === 125) {
-      LM.currentLevel.getPickupByCoord(tgt_x, tgt_y).remove();
-      endturn = true;
+      let pu = LM.currentLevel.getPickupByCoord(tgt_x, tgt_y);
+      if (pu.ability) {
+        if (!PLAYER.abilities["1"] || !PLAYER.abilities["2"] || !PLAYER.abilities["3"]) {
+          pu.remove();
+          endturn = true;
+        }
+      } else {
+        pu.remove();
+        endturn = true;
+      }
     }
   }
 
