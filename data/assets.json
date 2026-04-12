@@ -178,6 +178,26 @@
             {
                 "name":"gloomkaiser",
                 "path":"./data/sprites/gloomkaiser.png"
+            },
+            {
+                "name":"dragonkin",
+                "path":"./data/sprites/dragonkin.png"
+            },
+            {
+                "name":"consort",
+                "path":"./data/sprites/consort.png"
+            },
+            {
+                "name":"sssm",
+                "path":"./data/sprites/sssm.png"
+            },
+            {
+                "name":"sssm_clone",
+                "path":"./data/sprites/sssm_clone.png"
+            },
+            {
+                "name":"barno",
+                "path":"./data/sprites/barno.png"
             }
         ]
     }

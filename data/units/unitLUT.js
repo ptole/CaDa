@@ -15,7 +15,11 @@ import { Giraffe } from "./giraffe.js";
 import { Demilich } from "./demilich.js";
 import { Undead } from "./undead.js";
 import { Gloomkaiser } from "./gloomkaiser.js";
-
+import { Consort } from "./consort.js"
+import { Dragonkin } from "./dragonkin.js";
+import { SSSM } from "./sssm.js";
+import { SSSMClone } from "./sssmclone.js";
+import { Demon } from "./demon.js";
 
 const UNIT_LUT = {
     "crb": Crab,
@@ -29,7 +33,12 @@ const UNIT_LUT = {
     "grf":Giraffe,
     "lch":Demilich,
     "ud":Undead,
+    "dmn":Demon,
     "gkz":Gloomkaiser,
+    "con":Consort,
+    "dgk":Dragonkin,
+    "ssm": SSSM,
+    "ssm_clone": SSSMClone,
     "slb": ScrollLightningbolt,
     "sfb":ScrollFireball,
     "hppu": HPPickup,

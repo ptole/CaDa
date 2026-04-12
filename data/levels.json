@@ -181,34 +181,130 @@
             "description":"Disgusting noises of flesh pounding and flesh and unintelligible screams, along with revolting smells, assault your senses.",
             "enemies": [
                 {
-                    "shorthand": "drg",
+                    "shorthand": "con",
                     "count": 1
+                },
+                {
+                    "shorthand": "dgk",
+                    "count": 10
+                }
+            ],
+            "pickups": [
+                {
+                    "shorthand":"hppu",
+                    "count":15,
+                    "value":1
+                },
+                {
+                    "shorthand":"acpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"abpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
         "6": {
             "name": "Envy",
+            "description":"",
             "enemies": [
                 {
                     "shorthand": "gkz",
                     "count": 1
+                },
+                {
+                    "shorthand": "dmn",
+                    "count": 10
+                }
+            ],
+            "pickups": [
+                {
+                    "shorthand":"hppu",
+                    "count":15,
+                    "value":1
+                },
+                {
+                    "shorthand":"acpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"abpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
         "7": {
             "name": "Pinnacle of Pride",
+            "description":"",
             "enemies": [
                 {
-                    "shorthand": "sss",
+                    "shorthand": "sssm",
                     "count": 1
+                },
+                {
+                    "shorthand": "sssm_clone",
+                    "count": 15
+                }
+            ],
+            "pickups": [
+                {
+                    "shorthand":"hppu",
+                    "count":15,
+                    "value":1
+                },
+                {
+                    "shorthand":"acpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"abpu",
+                    "count":2,
+                    "value":1
+                },
+                {
+                    "shorthand":"sfb",
+                    "count":5,
+                    "value":0
+                },
+                {
+                    "shorthand":"slb",
+                    "count":5,
+                    "value":0
                 }
             ]
         },
         "8": {
             "name": "Domain of the Debaser",
+            "description":"Grand Wizard Barnogoth: <br> You are too late mortal. Nothing can stop me now. Witness the dawn of a new era!",
             "enemies": [
                 {
-                    "shorthand": "gwb",
+                    "shorthand": "barno",
                     "count": 1
                 }
             ]

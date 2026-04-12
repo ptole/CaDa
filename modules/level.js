@@ -9,9 +9,10 @@ class Level {
     inactives; //array of entities. basically enemies but inactives.
     freeSpaceForSpawn; //this is getting way too complicated
 
-    size = 100;
+    size;
 
-    constructor() {
+    constructor(size = 100) {
+        this.size = size;
         this.GRID = [];
         this.entities = [];
         this.enemies = {};

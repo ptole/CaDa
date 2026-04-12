@@ -10,6 +10,9 @@ class LevelManager {
     currentLevel
 
     loadLevel(number) {
+        if(number === 8){
+            this.loadlLevelEight();
+        }
 
         const data = levels.levels[number.toString()];
         const lvl = new Level();
@@ -138,6 +141,16 @@ class LevelManager {
         }
 
         return branch_start_point;
+    }
+
+    loadlLevelEight(){
+        const data = levels.levels[number.toString()];
+        const lvl = new Level();
+
+        //0 and 1 are reserved, so are 125, 126 and 127
+        let running_id = 2;
+
+        this.addLevelBorders(lvl);
     }
 }
 
