@@ -29,9 +29,9 @@ class Barno extends Entity {
         AM.audio["boss"].loop = true;
         AM.audio["boss"].play();
 
-        LOG.innerHTML += `${this.name}:<br>`;
-        LOG.innerHTML += `*Deafening roars*<br>`;
-        LOG.scrollTop = LOG.scrollHeight;
+        //LOG.innerHTML += `${this.name}:<br>`;
+        //LOG.innerHTML += `<br>`;
+        //LOG.scrollTop = LOG.scrollHeight;
 
     }
 

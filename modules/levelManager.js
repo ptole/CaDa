@@ -10,8 +10,9 @@ class LevelManager {
     currentLevel
 
     loadLevel(number) {
-        if(number === 8){
+        if (number === 8) {
             this.loadlLevelEight();
+            return;
         }
 
         const data = levels.levels[number.toString()];
@@ -76,7 +77,7 @@ class LevelManager {
 
         this.findFreeSpaceAndPlaceEntity(this.currentLevel, PLAYER);
         PLAYER.map = this.currentLevel;
-        
+
         this.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
         updateUI();
         calcGridOffset();
@@ -118,11 +119,11 @@ class LevelManager {
 
         let branch_start_point = [];
 
-        if((x < 0) || (x > lvl.size-1)){
-            
+        if ((x < 0) || (x > lvl.size - 1)) {
+
             return branch_start_point;
         }
-        if( (y < 0) || (y > lvl.size-1)){
+        if ((y < 0) || (y > lvl.size - 1)) {
             return branch_start_point;
         }
 
@@ -143,14 +144,49 @@ class LevelManager {
         return branch_start_point;
     }
 
-    loadlLevelEight(){
-        const data = levels.levels[number.toString()];
-        const lvl = new Level();
+    loadlLevelEight() {
+        let finallevelsize = 50;
+        const data = levels.levels["8"];
+        const lvl = new Level(finallevelsize);
 
-        //0 and 1 are reserved, so are 125, 126 and 127
-        let running_id = 2;
+        for (let i = 0; i < finallevelsize; i++) {
+            for (let j = 0; j < finallevelsize; j++) {
+                this.carveOutWalls(lvl, i, j);
+            }
+        }
 
         this.addLevelBorders(lvl);
+
+        const barno = new UNIT_LUT["barno"];
+        barno.id = 2;
+        barno.map = lvl;
+        lvl.addEnemy(barno);
+        barno.grid_x = 25;
+        barno.grid_y = 25;
+        console.log(lvl);
+        lvl.GRID[25][25] = barno.id;
+
+        //add the heptagram
+        let pu = new UNIT_LUT["heptagram"]();
+        pu.map = lvl;
+        pu.paid = 3;
+        lvl.addPickup(pu);
+
+
+        this.currentLevel = lvl;
+
+        LOG.innerHTML += `Entering ${data.name} <br>`;
+        LOG.innerHTML += `${data.description}<br>`;
+        LOG.scrollTop = LOG.scrollHeight;
+
+        PLAYER.grid_x = 25;
+        PLAYER.grid_y = 30;
+        PLAYER.map = this.currentLevel;
+
+        this.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 1;
+        updateUI();
+        calcGridOffset();
+        draw();
     }
 }
 

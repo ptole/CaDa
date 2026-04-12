@@ -222,7 +222,7 @@ function handlePlayerMovement(tgt_x, tgt_y, dir_x, dir_y) {
     endturn = true;
   } else {
 
-    if (LM.currentLevel.GRID[tgt_x][tgt_y] === 0) {
+    if (LM.currentLevel.GRID[tgt_x][tgt_y] === 0 || LM.currentLevel.GRID[tgt_x][tgt_y] === 124) {
       LM.currentLevel.GRID[PLAYER.grid_x][PLAYER.grid_y] = 0;
       PLAYER.grid_x += dir_x;
       PLAYER.grid_y += dir_y;

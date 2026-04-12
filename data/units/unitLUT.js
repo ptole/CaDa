@@ -20,6 +20,9 @@ import { Dragonkin } from "./dragonkin.js";
 import { SSSM } from "./sssm.js";
 import { SSSMClone } from "./sssmclone.js";
 import { Demon } from "./demon.js";
+import { Heptagram } from "../pickups/heptagram.js";
+import { Barno } from "./barno.js";
+
 
 const UNIT_LUT = {
     "crb": Crab,
@@ -39,11 +42,13 @@ const UNIT_LUT = {
     "dgk":Dragonkin,
     "ssm": SSSM,
     "ssm_clone": SSSMClone,
+    "barno":Barno,
     "slb": ScrollLightningbolt,
     "sfb":ScrollFireball,
     "hppu": HPPickup,
     "acpu": ACPickup,
-    "abpu": ABPickup
+    "abpu": ABPickup,
+    "heptagram":Heptagram
 }
 
 export {UNIT_LUT};

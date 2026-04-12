@@ -198,6 +198,14 @@
             {
                 "name":"barno",
                 "path":"./data/sprites/barno.png"
+            },
+            {
+                "name":"tpw",
+                "path":"./data/sprites/transparentwhite.png"
+            },
+            {
+                "name":"heptagram",
+                "path":"./data/sprites/heptagram.png"
             }
         ]
     }
